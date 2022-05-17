@@ -1,4 +1,3 @@
-// import { Link } from 'react-router-dom'
 import Game from '../components/Game'
 
 const GamePage = ( {socket }) => {
