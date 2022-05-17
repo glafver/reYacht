@@ -2,7 +2,7 @@ import './Gameboards.css'
 
 const Gameboards = () => {
 	return (
-		<div>
+		<div className="board-container">
 			<div className="board">
 			</div>
 		</div>
