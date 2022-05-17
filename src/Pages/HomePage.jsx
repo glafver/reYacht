@@ -1,10 +1,9 @@
-import { Link } from 'react-router-dom'
+import UserRegistration from '../components/UserRegistration'
 
 const Home = () => {
     return (
         <div>
-        <h1>Home</h1>
-        <Link to="/game"><button>Link to game </button></Link>
+            <UserRegistration />
         </div>
         
     )
