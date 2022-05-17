@@ -29,11 +29,15 @@ const UserRegistration = ({ socket }) => {
     socket.on('user:opponent_found', (waiting_opponent, room) => {
         setWaiting(waiting_opponent)
         setGameRoom(room.id)
+
+        // finding out opponent name for every user
         if (room.users[0].username === userName) {
             setOpponentName(room.users[1].username)
         } else {
             setOpponentName(room.users[0].username)
         }
+
+        // showing a modal with countdown
         setCountdown(true)
     });
 
