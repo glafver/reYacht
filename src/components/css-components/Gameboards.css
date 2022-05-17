@@ -1,0 +1,12 @@
+.board {
+	background-color: rgb(163, 204, 228);
+
+	border-radius: 10px;
+
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(25px, 1fr));
+	grid-template-rows: repeat(auto-fill, minmax(25px, 1fr));
+	height: 300px;
+	width: 300px;
+	gap: 1%;
+}
