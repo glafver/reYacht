@@ -11,10 +11,10 @@ const socket = socketio.connect(process.env.REACT_APP_SOCKET_URL)
 const App = () => {
   return (
     <div className="container text-center">
-      <Navbar /> 
+      <Navbar />
       <Routes>
         <Route path="/game" element={<Game socket={socket} />}></Route>
-        <Route path="/" element={<Home />}></Route>
+        <Route path="/" element={<Home socket={socket} />}></Route>
       </Routes>
     </div>
   )
