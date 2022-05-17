@@ -1,11 +1,11 @@
 import UserRegistration from '../components/UserRegistration'
 
-const Home = () => {
+const Home = ({ socket }) => {
     return (
         <div>
-            <UserRegistration />
+            <UserRegistration socket={socket} />
         </div>
-        
+
     )
 }
 
