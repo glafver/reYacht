@@ -23,6 +23,7 @@ const Game = ({ socket }) => {
 	return (
 		<div className="container-fluid vh-100 d-flex align-items-center justify-content-center flex-column">
 			<Image fluid src={test_image} className='col-6 m-2'></Image>
+			<p>test</p>
 			<Button onClick={handleStartGame}>Start</Button>
 		</div>
 	)
