@@ -24,7 +24,6 @@ const Game = ({ socket }) => {
 		<div>
 			<div className="container-fluid d-flex justify-content-between flex-row">
 				<Gameboards />
-				<Gameboards />
 			</div>
 
 			<Button onClick={handleStartGame}>Start</Button>

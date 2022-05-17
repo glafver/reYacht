@@ -1,8 +1,5 @@
-.board-container {
-	background-color: pink;
-}
-
 .board {
+	background-color: pink;
 	display: flex;
 	flex-wrap: wrap;
 	align-content: center;
