@@ -22,7 +22,7 @@ const Game = ({ socket }) => {
 
 	return (
 		<div>
-			<div className="container-fluid d-flex justify-content-between flex-row">
+			<div className="container-fluid d-flex justify-content-around flex-row">
 				<Gameboards />
 			</div>
 
