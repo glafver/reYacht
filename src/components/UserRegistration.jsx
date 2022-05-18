@@ -1,6 +1,7 @@
 // import { useNavigate } from 'react-router-dom'
 import { Form, Button, Modal } from 'react-bootstrap'
 import { useState, useRef } from 'react'
+import Gameboards from './Gameboards'
 
 const UserRegistration = ({ socket }) => {
 
@@ -84,6 +85,9 @@ const UserRegistration = ({ socket }) => {
                 <>
                     <h1 className='mb-4'>Your opponent name is {opponentName}</h1>
                     <h1 className='mb-4'>You are in the {gameRoom}</h1>
+					<div className="container d-flex justify-content-around flex-row">
+						<Gameboards />
+					</div>
                 </>
 
             }
