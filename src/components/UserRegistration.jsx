@@ -2,6 +2,8 @@
 import { Form, Button, Modal } from 'react-bootstrap'
 import { useState, useRef } from 'react'
 import Gameboards from './Gameboards'
+import CountdownTimer from './Countdown'
+import { useNavigate } from 'react-router-dom'
 
 const UserRegistration = ({ socket }) => {
 
@@ -13,7 +15,7 @@ const UserRegistration = ({ socket }) => {
     const [countdown, setCountdown] = useState(false)
     const nameInputRef = useRef()
 
-    // let navigate = useNavigate();
+    let navigate = useNavigate();
 
     const handleSubmit = async e => {
         e.preventDefault()
@@ -55,7 +57,7 @@ const UserRegistration = ({ socket }) => {
 
             <Modal show={countdown} className='d-flex align-items-center'>
                 <Modal.Body>
-                    Countdown 3, 2, 1
+                    <CountdownTimer/>
                 </Modal.Body>
             </Modal>
 
