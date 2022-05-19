@@ -1,3 +1,9 @@
+.boards {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 .board {
 	background-color: rgb(163, 204, 228);
 
