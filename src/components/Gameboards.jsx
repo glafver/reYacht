@@ -1,4 +1,6 @@
 import './css-components/Gameboards.css'
+import Results from './Results'
+
 
 const Gameboards = ({ userYachts, opponentsYachts }) => {
 
@@ -21,6 +23,7 @@ const Gameboards = ({ userYachts, opponentsYachts }) => {
 					)}
 				</div>
 			</div>
+			<Results />
 		</>
 	)
 }
