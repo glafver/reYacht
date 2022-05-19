@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import './css-components/Gameboards.css'
 
 const Gameboards = ({ userYachts, opponentsYachts }) => {
