@@ -1,13 +1,16 @@
 // import { useNavigate } from 'react-router-dom'
 import { Form, Button, Modal } from 'react-bootstrap'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Gameboards from './Gameboards'
 
 const UserRegistration = ({ socket }) => {
 
+
     const [nameInput, setNameInput] = useState('')
     const [userName, setUserName] = useState('')
     const [opponentName, setOpponentName] = useState('')
+    const [userYachts, setUserYachts] = useState([])
+    const [opponentsYachts, setOpponentsYachts] = useState([])
     const [gameRoom, setGameRoom] = useState('')
     const [waiting, setWaiting] = useState()
     const [countdown, setCountdown] = useState(false)
@@ -26,16 +29,22 @@ const UserRegistration = ({ socket }) => {
         setNameInput('')
     }
 
+
     // users listening when the opponent will be found
     socket.on('user:opponent_found', (waiting_opponent, room) => {
         setWaiting(waiting_opponent)
-        setGameRoom(room.id)
+        setGameRoom(room)
 
-        // finding out opponent name for every user
+        // finding out opponent name for every user and settin yachts for both
         if (room.users[0].username === userName) {
             setOpponentName(room.users[1].username)
+            console.log(room.users[0].yachts)
+            setUserYachts(room.users[0].yachts)
+            setOpponentsYachts(room.users[1].yachts)
         } else {
             setOpponentName(room.users[0].username)
+            setUserYachts(room.users[1].yachts)
+            setOpponentsYachts(room.users[0].yachts)
         }
 
         // showing a modal with countdown
@@ -58,7 +67,6 @@ const UserRegistration = ({ socket }) => {
                     Countdown 3, 2, 1
                 </Modal.Body>
             </Modal>
-
 
             {!userName && <div className='d-flex flex-column vh-50 align-items-center'>
                 <h1 className='mb-4'>{!userName && 'Enter your name to start the game:'}{userName && `Welcome to game ${userName}`}</h1>
@@ -84,10 +92,11 @@ const UserRegistration = ({ socket }) => {
             {opponentName &&
                 <>
                     <h1 className='mb-4'>Your opponent name is {opponentName}</h1>
-                    <h1 className='mb-4'>You are in the {gameRoom}</h1>
-					<div className="container d-flex justify-content-around flex-row">
-						<Gameboards />
-					</div>
+                    <h1 className='mb-4'>You are in the {gameRoom.id}</h1>
+                    <div className="container d-flex justify-content-around flex-row">
+                        {<Gameboards userYachts={userYachts} opponentsYachts={opponentsYachts} />}
+
+                    </div>
                 </>
 
             }
