@@ -1,9 +1,8 @@
-// import { useNavigate } from 'react-router-dom'
+
 import { Form, Button, Modal } from 'react-bootstrap'
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import Gameboards from './Gameboards'
 import CountdownTimer from './Countdown'
-import { useNavigate } from 'react-router-dom'
 
 const UserRegistration = ({ socket }) => {
 
@@ -18,7 +17,6 @@ const UserRegistration = ({ socket }) => {
     const [countdown, setCountdown] = useState(false)
     const nameInputRef = useRef()
 
-    let navigate = useNavigate();
 
     const handleSubmit = async e => {
         e.preventDefault()
@@ -53,9 +51,6 @@ const UserRegistration = ({ socket }) => {
         setCountdown(true)
     });
 
-    // after countdown finished => navigate to game 
-    // navigate("/game")
-
     return (
         <div>
             <Modal show={waiting} className='d-flex align-items-center'>
@@ -66,7 +61,7 @@ const UserRegistration = ({ socket }) => {
 
             <Modal show={countdown} className='d-flex align-items-center'>
                 <Modal.Body>
-                    <CountdownTimer/>
+                    <CountdownTimer />
                 </Modal.Body>
             </Modal>
 
@@ -96,7 +91,7 @@ const UserRegistration = ({ socket }) => {
                     <h1 className='mb-4'>Your opponent name is {opponentName}</h1>
                     <h1 className='mb-4'>You are in the {gameRoom.id}</h1>
                     <div className="container d-flex justify-content-around flex-row">
-                        {<Gameboards userYachts={userYachts} opponentsYachts={opponentsYachts} />}
+                        {<Gameboards userYachts={userYachts} opponentsYachts={opponentsYachts} userName={userName} opponentName={opponentName} />}
 
                     </div>
                 </>
