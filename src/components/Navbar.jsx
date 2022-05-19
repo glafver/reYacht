@@ -16,9 +16,9 @@ const Navbar = () => {
                 <Link className="navbar-brand" to={'/'}>
                     <img src={logo} width="70" height="70" alt=""></img>
                 </Link>
-                <Button variant="secondary" onClick={handleShow}>
+                <button className="btn-gold" onClick={handleShow}>
                     Game instructions
-                </Button>
+                </button>
 
                 <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>

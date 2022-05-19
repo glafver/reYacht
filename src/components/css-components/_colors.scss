@@ -1,0 +1,13 @@
+$oceanblue:			#0E5955;
+$lightOceanBlue:	#1B6B67;
+
+$gold:			#AE9B89;
+
+.btn-gold {
+	background-color: $gold;
+	color: black;
+
+	&:hover {
+		background-color: scale-color($gold, $lightness: 10%);
+	}
+}
