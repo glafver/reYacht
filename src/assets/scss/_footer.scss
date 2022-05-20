@@ -1,0 +1,19 @@
+@import 'colors';
+
+footer {
+	bottom: 0;
+	height: 10vh;
+	background-color: black;
+	padding: 1em;
+	color: white;
+	font-family: 'Pinyon Script', cursive;
+	font-size: 0.8rem;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+footer p {
+	margin: 0;
+}

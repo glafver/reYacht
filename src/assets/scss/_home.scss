@@ -9,3 +9,20 @@ form {
 	height: 80vh;
 	padding: 4rem;
 }
+
+#input-username {
+	border: none;
+	border-bottom: 2px solid rgb(0, 0, 0);
+	border-radius: none;
+	border-radius: 0px;
+
+	font-style: italic;
+	font-family: 'Pinyon Script', cursive;
+	font-size: 1.5rem;
+
+	margin-bottom: 2rem;
+}
+
+#input-username::placeholder {
+	color: $gold;
+}

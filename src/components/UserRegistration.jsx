@@ -63,12 +63,12 @@ const UserRegistration = ({ socket }) => {
 
 
             {!userName && <div className="form-container">
-                <h1 className='mb-4'>{!userName && 'Enter your name to start the game:'}{userName && `Welcome to game ${userName}`}</h1>
+                <h1 className='mb-4'>{!userName && 'Please sign your name'}{userName && `Welcome to game ${userName}`}</h1>
                 <Form onSubmit={handleSubmit}>
-                    <Form.Group className="mb-3" >
-                        <Form.Control className='col-6 mb-4'
+                    <Form.Group className="mb-3 form-username" >
+                        <Form.Control id="input-username"
                             onChange={e => setNameInput(e.target.value)}
-                            placeholder="What is your nickname?"
+                            placeholder="Enter name here"
                             ref={nameInputRef}
                             required
                             type="text"

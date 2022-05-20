@@ -4,9 +4,13 @@
 	color: $nav-font-color;
 }
 
+.logo h1 {
+	font-size: 1.7rem;
+}
+
 .navbar {
 	background-color: $nav-color;
-	height: 25vh;
+	height: 20vh;
 	padding: 1rem;
 }
 
