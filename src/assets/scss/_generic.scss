@@ -1,7 +1,18 @@
-$oceanblue:			#0E5955;
-$lightOceanBlue:	#1B6B67;
+@import 'colors';
 
-$gold:			#AE9B89;
+/**
+* Generic styles
+*/
+
+html,
+body,
+#root {
+	min-height: 100vh;
+}
+
+body {
+	background-color: $bg-color;
+}
 
 .btn-gold {
 	background-color: $gold;

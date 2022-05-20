@@ -12,14 +12,15 @@ const Navbar = () => {
 
     return (
         <div>
-            <nav className="navbar navbar-light bg-light">
-                <Link className="navbar-brand" to={'/'}>
-                    <img src={logo} width="70" height="70" alt=""></img>
+            <nav className="navbar">
+                <Link className="logo navbar-brand" to={'/'}>
+                    <h1>Battle of the Yachts</h1>
                 </Link>
                 <button className="btn-gold" onClick={handleShow}>
                     Game instructions
                 </button>
 
+				{/* lägg i en egen component? */}
                 <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>Game instructions</Modal.Title>
