@@ -1,6 +1,17 @@
 @import 'colors';
 
+.logo {
+	color: $nav-font-color;
+}
+
 .navbar {
 	background-color: $nav-color;
-	color: $nav-font-color;
+	height: 25vh;
+	padding: 1rem;
+}
+
+.navbar a {
+	display: flex;
+	align-items: center;
+
 }

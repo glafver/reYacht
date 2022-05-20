@@ -48,7 +48,7 @@ const UserRegistration = ({ socket }) => {
     // navigate("/game")
 
     return (
-        <div>
+        <>
             <Modal show={waiting} className='d-flex align-items-center'>
                 <Modal.Body>
                     Waiting for another player
@@ -62,7 +62,7 @@ const UserRegistration = ({ socket }) => {
             </Modal>
 
 
-            {!userName && <div className='d-flex flex-column vh-50 align-items-center'>
+            {!userName && <div className="form-container">
                 <h1 className='mb-4'>{!userName && 'Enter your name to start the game:'}{userName && `Welcome to game ${userName}`}</h1>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" >
@@ -73,7 +73,7 @@ const UserRegistration = ({ socket }) => {
                             required
                             type="text"
                             value={nameInput} />
-                        <Button variant="success" type="submit">Start the game</Button>
+                        <button className="button btn-gold" type="submit">Start the game</button>
                     </Form.Group>
                 </Form>
             </div>}
@@ -93,7 +93,7 @@ const UserRegistration = ({ socket }) => {
                 </>
 
             }
-        </div >
+        </>
     )
 }
 

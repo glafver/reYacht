@@ -11,14 +11,16 @@ const Navbar = () => {
     const handleShow = () => setShow(true);
 
     return (
-        <div>
+        <>
             <nav className="navbar">
-                <Link className="logo navbar-brand" to={'/'}>
-                    <h1>Battle of the Yachts</h1>
-                </Link>
-                <button className="btn-gold" onClick={handleShow}>
-                    Game instructions
-                </button>
+				<div className="container">
+					<Link className="logo navbar-brand" to={'/'}>
+						<h1>Battle of the Yachts</h1>
+					</Link>
+					<button className="button btn-gold" onClick={handleShow}>
+						Game instructions
+					</button>
+				</div>
 
 				{/* lägg i en egen component? */}
                 <Modal show={show} onHide={handleClose}>
@@ -35,7 +37,7 @@ const Navbar = () => {
                     </Modal.Footer>
                 </Modal>
             </nav>
-        </div>
+        </>
     )
 }
 
