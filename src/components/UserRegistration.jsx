@@ -90,7 +90,7 @@ const UserRegistration = ({ socket }) => {
                 <>
                     <h1 className='mb-4'>Your opponent name is {opponentName}</h1>
                     <h1 className='mb-4'>You are in the {gameRoom.id}</h1>
-                    <div className="container d-flex justify-content-around flex-row">
+                    <div className="container">
                         {<Gameboards userYachts={userYachts} opponentsYachts={opponentsYachts} />}
 
                     </div>
