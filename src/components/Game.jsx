@@ -1,8 +1,13 @@
 import { useEffect } from 'react'
 import { Button } from 'react-bootstrap'
 import Gameboards from './Gameboards'
+import Chat from './Chat'
+import { useGameContext } from '../contexts/GameContextProvider'
 
-const Game = ({ socket }) => {
+
+const Game = () => {
+
+	const { socket } = useGameContext()
 
 	const handleStartGame = () => {
 		console.log("Emitting 'game:start' event to server")
@@ -27,6 +32,7 @@ const Game = ({ socket }) => {
 			</div>
 
 			<Button onClick={handleStartGame}>Start</Button>
+			<Chat />
 		</div>
 	)
 }

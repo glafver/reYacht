@@ -2,18 +2,20 @@ import { Form, Button, Modal } from 'react-bootstrap'
 import { useState, useRef } from 'react'
 import Gameboards from './Gameboards'
 import CountdownTimer from './Countdown'
+import { useGameContext } from '../contexts/GameContextProvider'
 
-const UserRegistration = ({ socket }) => {
+const UserRegistration = () => {
 
     const [nameInput, setNameInput] = useState('')
-    const [userName, setUserName] = useState('')
-    const [opponentName, setOpponentName] = useState('')
-    const [userYachts, setUserYachts] = useState([])
-    const [opponentsYachts, setOpponentsYachts] = useState([])
-    const [gameRoom, setGameRoom] = useState('')
+    // const [userName, setUserName] = useState('')
+    // const [opponentName, setOpponentName] = useState('')
+    // const [userYachts, setUserYachts] = useState([])
+    // const [opponentsYachts, setOpponentsYachts] = useState([])
+    // const [gameRoom, setGameRoom] = useState('')
     const [waiting, setWaiting] = useState()
     const [countdown, setCountdown] = useState(false)
     const nameInputRef = useRef()
+    const { userName, setUserName, opponentUserName, setOpponentUserName, yachts, setYachts, opponentYachts, setOpponentYachts, socket } = useGameContext()
 
     const handleSubmit = async e => {
         e.preventDefault()
@@ -30,26 +32,23 @@ const UserRegistration = ({ socket }) => {
     // users listening when the opponent will be found
     socket.on('user:opponent_found', (waiting_opponent, room) => {
         setWaiting(waiting_opponent)
-        setGameRoom(room)
+        // setGameRoom(room)
 
         // finding out opponent name for every user and settin yachts for both
+        // NEEDS TO B MOVED TO SERVER!!!!!!!!!!!!!!
         if (room.users[0].username === userName) {
-            setOpponentName(room.users[1].username)
-            console.log(room.users[0].yachts)
-            setUserYachts(room.users[0].yachts)
-            setOpponentsYachts(room.users[1].yachts)
+            setOpponentUserName(room.users[1].username)
+            setYachts(room.users[0].yachts)
+            setOpponentYachts(room.users[1].yachts)
         } else {
-            setOpponentName(room.users[0].username)
-            setUserYachts(room.users[1].yachts)
-            setOpponentsYachts(room.users[0].yachts)
+            setOpponentUserName(room.users[0].username)
+            setYachts(room.users[1].yachts)
+            setOpponentYachts(room.users[0].yachts)
         }
 
         // showing a modal with countdown
         setCountdown(true)
     });
-
-    // after countdown finished => navigate to game 
-    // navigate("/game")
 
     return (
         <div>
@@ -86,12 +85,10 @@ const UserRegistration = ({ socket }) => {
 
             }
 
-            {opponentName &&
+            {opponentUserName &&
                 <>
-                    <h1 className='mb-4'>Your opponent name is {opponentName}</h1>
-                    <h1 className='mb-4'>You are in the {gameRoom.id}</h1>
                     <div className="container">
-                        {<Gameboards userYachts={userYachts} opponentsYachts={opponentsYachts} />}
+                        {<Gameboards yachts={yachts} opponentYachts={opponentYachts} />}
 
                     </div>
                 </>
