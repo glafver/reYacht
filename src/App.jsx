@@ -1,4 +1,3 @@
-import socketio from 'socket.io-client'
 import Game from './Pages/GamePage'
 import './App.css';
 import './assets/scss/App.scss';
@@ -7,18 +6,16 @@ import { Route, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Home from './Pages/HomePage'
 
-const socket = socketio.connect(process.env.REACT_APP_SOCKET_URL)
-
 const App = () => {
-	return (
-		<div className="text-center">
-			<Navbar />
-			<Routes>
-				<Route path="/game" element={<Game socket={socket} />}></Route>
-				<Route path="/" element={<Home socket={socket} />}></Route>
-			</Routes>
-		</div>
-	)
+  return (
+    <div className="container text-center">
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/game" element={<Game />}></Route>
+      </Routes>
+    </div>
+  )
 }
 
 export default App;
