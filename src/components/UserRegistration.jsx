@@ -5,7 +5,7 @@ import { useGameContext } from '../Contexts/UserContext'
 
 const UserRegistration = () => {
 
-    const { userName, setUserName, yachts, setYachts, waiting, setWaiting, socket } = useGameContext()
+    const { userName, setUserName, setYachts, setWaiting, socket } = useGameContext()
     const [nameInput, setNameInput] = useState('')
     const nameInputRef = useRef()
 
@@ -18,7 +18,6 @@ const UserRegistration = () => {
         }
 
         socket.emit('user:joined', nameInput, (result) => {
-            console.log(result.yachts)
             setYachts(result.yachts)
             setWaiting(result.waiting)
         })
@@ -30,7 +29,7 @@ const UserRegistration = () => {
     return (
         <div>
             {!userName && <div className="form-container">
-                <h1 className='mb-4'>{!userName && 'Please sign your name:'}{userName && `Welcome to game ${userName}`}</h1>
+                <h1 className='mb-4'>{!userName && 'Please sign your name:'}</h1>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3 form-username" >
                         <Form.Control id="input-username"

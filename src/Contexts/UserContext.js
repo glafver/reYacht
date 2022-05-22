@@ -12,7 +12,6 @@ const GameContextProvider = ({ children }) => {
     const [userName, setUserName] = useState()
     const [opponentName, setOpponentName] = useState()
     const [yachts, setYachts] = useState([])
-    const [opponentYachts, setOpponentYachts] = useState([])
     const [countdown, setCountdown] = useState(false)
     const [waiting, setWaiting] = useState()
 
@@ -23,8 +22,6 @@ const GameContextProvider = ({ children }) => {
         setOpponentName,
         yachts,
         setYachts,
-        opponentYachts,
-        setOpponentYachts,
         countdown,
         setCountdown,
         waiting,

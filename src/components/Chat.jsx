@@ -22,20 +22,14 @@ const ChatRoom = () => {
         const msg = {
             username: userName,
             content: message,
-            timestamp: Date.now(),
+            // timestamp: Date.now(),
         }
 
         socket.emit('chat:message', msg)
 
-        setMessages(prevMessages =>
-            [
-                ...prevMessages,
-                { ...msg, self: true }
-            ]
-        )
+        setMessages(prevMessages => [...prevMessages, { ...msg }])
 
         setMessage('')
-        messageRef.current.focus()
     }
 
 
@@ -45,33 +39,13 @@ const ChatRoom = () => {
 
     }, [socket])
 
-    useEffect(() => {
-        messageRef.current && messageRef.current.focus()
-    }, [])
 
     return (
         <div className='my-5'>
             <div>
                 <h2>Chat</h2>
 
-                <div>
-                    <ListGroup>
-                        {messages.map((message, index) => {
-                            const ts = new Date(message.timestamp)
-                            const time = ts.toLocaleTimeString()
-                            return (
-                                <ListGroup.Item key={index}>
-                                    <span>{time} </span>
-                                    <span><b> {message.username}: </b> </span>
-                                    <span>{message.content}</span>
-                                </ListGroup.Item>
-                            )
-                        }
-                        )}
-                    </ListGroup>
-                </div>
-
-                <Form onSubmit={handleSubmit}>
+                <Form onSubmit={handleSubmit} className="mx-auto mb-3">
                     <InputGroup>
                         <Form.Control
                             onChange={e => setMessage(e.target.value)}
@@ -84,6 +58,23 @@ const ChatRoom = () => {
                         <Button variant="success" type="submit" disabled={!message.length}>Send</Button>
                     </InputGroup>
                 </Form>
+
+                <div>
+                    <ListGroup>
+                        {messages.map((message, index) => {
+                            // const ts = new Date(message.timestamp)
+                            // const time = ts.toLocaleTimeString()
+                            return (
+                                <ListGroup.Item key={index} className={message.username === userName ? "d-flex justify-content-end bg-secondary bg-opacity-10" : "d-flex justify-content-start"}>
+                                    {/* <span>{time} </span> */}
+                                    {/* <span><b> {message.username}: </b> </span> */}
+                                    <span>{message.content}</span>
+                                </ListGroup.Item>
+                            )
+                        }
+                        )}
+                    </ListGroup>
+                </div>
             </div>
         </div>
     )

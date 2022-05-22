@@ -3,9 +3,8 @@ import Results from './Results'
 import { useGameContext } from '../Contexts/UserContext'
 import Chat from './Chat'
 
-
 const Gameboards = () => {
-	const { userName, opponentName, yachts, opponentYachts } = useGameContext()
+	const { userName, opponentName, yachts } = useGameContext()
 
 	return (
 		<>
@@ -22,9 +21,6 @@ const Gameboards = () => {
 				<div className="board-container text-center">
 					<h1>{opponentName}</h1>
 					<div className="board enemy-grid m-auto">
-						{opponentYachts && opponentYachts.map(yacht =>
-							<div key={`${yacht.row_start} ${yacht.col_start}`} style={{ gridArea: (yacht.row_start + 1) + "/" + (yacht.col_start + 1) + "/" + yacht.row_end + "/" + yacht.col_end, backgroundColor: "red" }}></div>
-						)}
 					</div>
 				</div>
 			</div>
