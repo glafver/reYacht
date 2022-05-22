@@ -8,6 +8,9 @@ const ChatRoom = () => {
     const { userName, socket } = useGameContext()
     const messageRef = useRef()
 
+
+	let chatbox = document.querySelector(".chat-container")
+
     const handleIncomingMessage = msg => {
         setMessages(prevMessages => [...prevMessages, msg])
     }
@@ -36,6 +39,8 @@ const ChatRoom = () => {
 
         setMessage('')
         messageRef.current.focus()
+		chatbox.scrollIntoView({block: "end"})
+
     }
 
 
@@ -55,7 +60,7 @@ const ChatRoom = () => {
                 <h2>Chat</h2>
 
                 <div>
-                    <ListGroup>
+                    <ListGroup className="chat-container">
                         {messages.map((message, index) => {
                             const ts = new Date(message.timestamp)
                             const time = ts.toLocaleTimeString()
@@ -71,8 +76,8 @@ const ChatRoom = () => {
                     </ListGroup>
                 </div>
 
-                <Form onSubmit={handleSubmit}>
-                    <InputGroup>
+                <Form className="chat-input-form" onSubmit={handleSubmit}>
+                    <InputGroup className="input-form-holder">
                         <Form.Control
                             onChange={e => setMessage(e.target.value)}
                             placeholder="Let's chat!"
