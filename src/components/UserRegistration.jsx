@@ -1,4 +1,4 @@
-import { Form, Button } from 'react-bootstrap'
+import { Form } from 'react-bootstrap'
 import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGameContext } from '../Contexts/UserContext'
@@ -30,7 +30,7 @@ const UserRegistration = () => {
     return (
         <div>
             {!userName && <div className="form-container">
-                <h1 className='mb-4'>{!userName && 'Enter your name to start the game:'}{userName && `Welcome to game ${userName}`}</h1>
+                <h1 className='mb-4'>{!userName && 'Please sign your name:'}{userName && `Welcome to game ${userName}`}</h1>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3 form-username" >
                         <Form.Control id="input-username"

@@ -1,0 +1,19 @@
+@import 'colors';
+
+.result-container {
+	width: 60%;
+	height: auto;
+	border: solid 1px $gold;
+	margin: 4% auto;
+	
+	padding: 2%;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.result-container p {
+	color: black;
+}
