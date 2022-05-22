@@ -14,6 +14,7 @@ const GameContextProvider = ({ children }) => {
     const [yachts, setYachts] = useState([])
     const [countdown, setCountdown] = useState(false)
     const [waiting, setWaiting] = useState()
+    const [shootTarget, setShootTarget] = useState({ row: 0, col: 0 })
 
     const values = {
         userName,
@@ -26,6 +27,8 @@ const GameContextProvider = ({ children }) => {
         setCountdown,
         waiting,
         setWaiting,
+        shootTarget,
+        setShootTarget,
         socket
     }
 

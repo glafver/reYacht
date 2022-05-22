@@ -1,14 +1,25 @@
 import './css-components/Gameboards.css'
 import Results from './Results'
 import { useGameContext } from '../Contexts/UserContext'
+import { useEffect } from 'react'
 import Chat from './Chat'
 
 const Gameboards = () => {
-	const { userName, opponentName, yachts } = useGameContext()
+	const { userName, opponentName, yachts, shootTarget, setShootTarget } = useGameContext()
+
+	useEffect(() => {
+		const update = (e) => {
+			setShootTarget({ row: Math.ceil(e.offsetY / 30), col: Math.ceil(e.offsetX / 30) })
+		}
+		window.addEventListener('click', update)
+
+	}, [setShootTarget])
 
 	return (
 		<>
+			<h1>Shoot target: {shootTarget.row} {shootTarget.col}</h1>
 			<div className='container d-flex justify-content-around'>
+
 				<div className="board-container text-center">
 					<h1>{userName}</h1>
 					<div className="board player-grid m-auto">
