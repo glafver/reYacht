@@ -1,29 +1,26 @@
-import Countdown from 'react-countdown'
 import { useGameContext } from '../contexts/UserContext'
+import { useEffect, useState } from 'react'
+import { Modal } from 'react-bootstrap'
+
 
 const CountdownTimer = () => {
 
-    const { setCountdown } = useGameContext()
+    const [counter, setCounter] = useState(5)
+    const { countdown, setCountdown } = useGameContext()
 
-    const renderer = ({ seconds, completed }) => {
+    useEffect(() => {
+        counter > 0 && setTimeout(() => setCounter(counter - 1), 1000)
+        counter === 0 && setCountdown(false)
+    }, [counter, setCountdown])
 
-        if (!completed) {
-            // If the countdown is active, render this span.
-            return <span> Starting game in... {seconds}</span>
-
-        } else {
-            // When countdown is over return nothing.
-            setCountdown(false)
-            return
-        }
-    }
 
     return (
-        <div>
-            {<Countdown
-                date={Date.now() + 5000}
-                renderer={renderer} />}
-        </div>
+        <Modal show={countdown} className='d-flex align-items-center text-center' id="countdown">
+            <Modal.Body >
+                <p className='display-3'>Game will start in</p>
+                <p>{counter}</p>
+            </Modal.Body>
+        </Modal>
     )
 }
 
