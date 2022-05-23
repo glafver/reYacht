@@ -10,7 +10,7 @@ const Gameboards = () => {
 
 		const update = (e) => {
 			if (move && e.target.classList.contains('enemy-grid')) {
-				setShootTarget({ row: Math.ceil(e.offsetY / 30), col: Math.ceil(e.offsetX / 30) })
+				setShootTarget({ row: Math.ceil(e.offsetY / 30) - 1, col: Math.ceil(e.offsetX / 30) - 1})
 			}
 		}
 		window.addEventListener('click', update)
@@ -18,7 +18,7 @@ const Gameboards = () => {
 	}, [setShootTarget, move, socket])
 
 	useEffect(() => {
-		if (shootTarget.row !== 0 && shootTarget.col !== 0)
+		// if (shootTarget.row !== 0 && shootTarget.col !== 0)
 			socket.emit('game:shoot', shootTarget)
 	}, [shootTarget, socket])
 
