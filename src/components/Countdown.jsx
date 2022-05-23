@@ -1,6 +1,9 @@
 import Countdown from 'react-countdown'
+import { useGameContext } from '../Contexts/UserContext'
 
 const CountdownTimer = () => {
+
+    const { setCountdown } = useGameContext()
 
     const renderer = ({ seconds, completed }) => {
 
@@ -10,15 +13,16 @@ const CountdownTimer = () => {
 
         } else {
             // When countdown is over return nothing.
-            return 
+            setCountdown(false)
+            return
         }
     }
 
     return (
         <div>
-            {<Countdown 
-            date={Date.now() + 5000}
-            renderer={renderer} />}
+            {<Countdown
+                date={Date.now() + 5000}
+                renderer={renderer} />}
         </div>
     )
 }
