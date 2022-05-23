@@ -5,24 +5,28 @@ import { useEffect } from 'react'
 import Chat from './Chat'
 
 const Gameboards = () => {
-	const { userName, opponentName, yachts, shootTarget, move, setShootTarget } = useGameContext()
+	const { userName, opponentName, yachts, shootTarget, move, setShootTarget, socket } = useGameContext()
 
 	useEffect(() => {
 
 		const update = (e) => {
 			if (move && e.target.classList.contains('enemy-grid')) {
-				console.log('press')
 				setShootTarget({ row: Math.ceil(e.offsetY / 30), col: Math.ceil(e.offsetX / 30) })
 			}
 		}
 		window.addEventListener('click', update)
 
-	}, [setShootTarget, move])
+	}, [setShootTarget, move, socket])
+
+	useEffect(() => {
+		if (shootTarget.row !== 0 && shootTarget.col !== 0)
+			socket.emit('game:shoot', shootTarget)
+	}, [shootTarget, socket])
 
 	return (
 		<>
-			<h1>Shoot target: {shootTarget.row} {shootTarget.col}</h1>
-			<h1>You {move === true ? "move" : "wait"}</h1>
+			<Results />
+
 			<div className='container d-flex justify-content-around'>
 
 				<div className="board-container text-center">
@@ -41,7 +45,6 @@ const Gameboards = () => {
 				</div>
 			</div>
 
-			<Results />
 			<Chat />
 
 		</>
