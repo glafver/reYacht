@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import Chat from './Chat'
 
 const Gameboards = () => {
-	const { userName, opponentName, yachts, shootTarget, setShootTarget } = useGameContext()
+	const { userName, opponentName, yachts, shootTarget, move, setShootTarget } = useGameContext()
 
 	useEffect(() => {
 		const update = (e) => {
@@ -18,6 +18,7 @@ const Gameboards = () => {
 	return (
 		<>
 			<h1>Shoot target: {shootTarget.row} {shootTarget.col}</h1>
+			<h1>You {move === true ? "move" : "wait"}</h1>
 			<div className='container d-flex justify-content-around'>
 
 				<div className="board-container text-center">

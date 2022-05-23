@@ -6,12 +6,13 @@ import { useGameContext } from '../Contexts/UserContext'
 
 const Game = () => {
 
-	const { userName, opponentName, setOpponentName, countdown, waiting, setWaiting, setCountdown, socket } = useGameContext()
+	const { userName, opponentName, setOpponentName, countdown, waiting, setWaiting, setMove, setCountdown, socket } = useGameContext()
 
 	useEffect(() => {
 		// users listening when the opponent will be found
-		socket.on('user:opponent_found', (waiting_opponent, opponent) => {
-
+		socket.on('user:opponent_found', (waiting_opponent, opponent, move) => {
+			console.log(move, 'move')
+			setMove(move)
 			setWaiting(waiting_opponent)
 			setOpponentName(opponent)
 
@@ -19,7 +20,8 @@ const Game = () => {
 			setCountdown(true)
 
 		});
-	}, [socket, setOpponentName, setWaiting, setCountdown,])
+
+	}, [socket, setOpponentName, setWaiting, setCountdown, setMove])
 
 
 	return (
