@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
-import './css-components/Results.css'
-import { useGameContext } from '../Contexts/UserContext'
+import { useGameContext } from '../contexts/UserContext'
 
 const Results = () => {
 	const [hitOrMiss, setHitOrMiss] = useState()

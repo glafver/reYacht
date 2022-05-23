@@ -1,5 +1,5 @@
 import Countdown from 'react-countdown'
-import { useGameContext } from '../Contexts/UserContext'
+import { useGameContext } from '../contexts/UserContext'
 
 const CountdownTimer = () => {
 

@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import { Button, Form, InputGroup, ListGroup } from 'react-bootstrap'
-import { useGameContext } from '../Contexts/UserContext'
+import { useGameContext } from '../contexts/UserContext'
 
 const ChatRoom = () => {
     const [message, setMessage] = useState('')

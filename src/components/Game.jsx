@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import Gameboards from './Gameboards'
 import { Modal } from 'react-bootstrap'
 import CountdownTimer from './Countdown'
-import { useGameContext } from '../Contexts/UserContext'
+import { useGameContext } from '../contexts/UserContext'
 
 const Game = () => {
 

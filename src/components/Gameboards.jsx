@@ -1,8 +1,7 @@
-import './css-components/Gameboards.css'
-import Results from './Results'
-import { useGameContext } from '../Contexts/UserContext'
+import { useGameContext } from '../contexts/UserContext'
 import { useEffect } from 'react'
 import Chat from './Chat'
+import Results from './Results'
 
 const Gameboards = () => {
 	const { userName, opponentName, yachts, shootTarget, move, setShootTarget, socket } = useGameContext()

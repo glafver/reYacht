@@ -1,10 +1,10 @@
-import Game from './Pages/GamePage'
 import './App.css';
 import './assets/scss/App.scss';
 import 'bootstrap/dist/css/bootstrap.css'
 import { Route, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar'
-import Home from './Pages/HomePage'
+import Game from './pages/GamePage'
+import Home from './pages/HomePage'
 
 const App = () => {
 	return (

@@ -1,7 +1,7 @@
 import { Form } from 'react-bootstrap'
 import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useGameContext } from '../Contexts/UserContext'
+import { useGameContext } from '../contexts/UserContext'
 
 const UserRegistration = () => {
 
