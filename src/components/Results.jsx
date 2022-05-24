@@ -11,7 +11,7 @@ const Results = () => {
 
 	return (
 		<div className="result-container">
-			<p>Shoot target: {shootTarget.row} {shootTarget.col}</p>
+			{shootTarget && <p>Shoot target: {shootTarget.row} {shootTarget.col}</p> }
 			<p>You {move === true ? "move" : "wait"}</p>
 			<p>{hitOrMiss}</p>
 		</div>

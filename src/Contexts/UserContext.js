@@ -15,7 +15,7 @@ const GameContextProvider = ({ children }) => {
     const [countdown, setCountdown] = useState(false)
     const [waiting, setWaiting] = useState()
     const [move, setMove] = useState()
-    const [shootTarget, setShootTarget] = useState({ row: 0, col: 0 })
+    const [shootTarget, setShootTarget] = useState()
 
     const values = {
         userName,
