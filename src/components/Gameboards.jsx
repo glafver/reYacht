@@ -20,7 +20,7 @@ const Gameboards = () => {
 	useEffect(() => {
 		// if (shootTarget.row !== 0 && shootTarget.col !== 0)
 			socket.emit('game:shoot', shootTarget)
-	}, [shootTarget, socket])
+	}, [shootTarget])
 
 	return (
 		<>
