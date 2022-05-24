@@ -1,17 +1,17 @@
-import { useState, useEffect } from 'react'
-import { useGameContext } from '../contexts/UserContext'
+/* import { useState, useEffect } from 'react'
+import { useGameContext } from '../contexts/UserContext' */
 
 const Results = () => {
-	const [hit, setHit] = useState()
+	/* const [hit, setHit] = useState()
 	const [miss, setMiss] = useState()
 	const { userName, opponentName, shootTarget, move, socket } = useGameContext()
-/* 
-	useEffect(() => {
-		setHitOrMiss("that was a hit!")
-	}, []) */
+
+	const handleMiss = ((data) => {
+		setMiss(data)
+	})
 
 	const handleHit = ((data) => {
-		console.log(data)
+		setHit(data)
 	})
 
 	useEffect(() => {
@@ -19,12 +19,16 @@ const Results = () => {
 
 	}, [hit, socket])
 
+	useEffect(() => {
+		socket.on('shot:miss', handleMiss)
+	}, [miss, socket]) */
+
 	return (
 		<div className="result-container">
-			{shootTarget && <p>Shoot target: {shootTarget.row} {shootTarget.col}</p> }
+			{/* {shootTarget && <p>Shoot target: {shootTarget.row} {shootTarget.col}</p> }
 			<p>You {move === true ? "move" : "wait"}</p>
 			<p>{hit}</p>
-			<p>{miss}</p>
+			<p>{miss}</p> */}
 
 		</div>
 	)
