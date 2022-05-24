@@ -60,9 +60,6 @@ const Gameboards = () => {
 			<div className="result-container">
 				{shootTarget && <p>Shoot target: {shootTarget.row} {shootTarget.col}</p> }
 				<p>You {move === true ? "move" : "wait"}</p>
-				<p>{hit}</p>
-				{/* <p>{miss}</p> */}
-
 			</div>
 
 			<div className='container d-flex justify-content-around'>
