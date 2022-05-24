@@ -6,13 +6,13 @@ import Results from './Results'
 const Gameboards = () => {
 	const { userName, opponentName, yachts, shootTarget, move, setShootTarget, socket } = useGameContext()
 	const [hit, setHit] = useState()
-	const [miss, setMiss] = useState()
+	/* const [miss, setMiss] = useState() */
 	const [rowCorr, setRowCorr] = useState()
 	const [colCorr, setColCorr] = useState()
 
-	const handleMiss = ((data) => {
+	/* const handleMiss = ((data) => {
 		setMiss(data)
-	})
+	}) */
 
 	const handleHit = ((data, rowCor, colCor) => {
 		console.log(data, rowCor, colCor)
@@ -25,10 +25,10 @@ const Gameboards = () => {
 		socket.on('shot:hit', handleHit)
 	}, [hit, socket])
 
-	useEffect(() => {
+/* 	useEffect(() => {
 		socket.on('shot:miss', handleMiss)
 	}, [miss, socket])
-
+ */
 	useEffect(() => {
 
 		const update = (e) => {
@@ -52,7 +52,7 @@ const Gameboards = () => {
 				{shootTarget && <p>Shoot target: {shootTarget.row} {shootTarget.col}</p> }
 				<p>You {move === true ? "move" : "wait"}</p>
 				<p>{hit}</p>
-				<p>{miss}</p>
+				{/* <p>{miss}</p> */}
 
 			</div>
 
@@ -60,13 +60,6 @@ const Gameboards = () => {
 
 				<div className="board-container text-center">
 					<h1>{userName}</h1>
-
-					<div className="hit player-grid m-auto">
-						{hit && yachts.map(yacht =>
-							<div key={`${yacht.row_start} ${yacht.col_start}`} style={{ gridArea: (yacht.row_start + 1) + "/" + (yacht.col_start + 1) + "/" + yacht.row_end + "/" + yacht.col_end, backgroundColor: "green" }}></div>
-						)}
-					</div>
-
 					<div className="board player-grid m-auto" >
 
 						{yachts && yachts.map(yacht =>
@@ -77,8 +70,10 @@ const Gameboards = () => {
 				<div className="board-container text-center">
 					<h1>{opponentName}</h1>
 					<p>{rowCorr} and {colCorr}</p>
+					
 
 					<div className="board enemy-grid m-auto" style={{ cursor: move === true ? "pointer" : "not-allowed" }}>
+						{hit && (<div style={{gridRow: rowCorr + "/" + (rowCorr+1), gridColumn: colCorr + "/" + (colCorr+1), backgroundColor: "red"}}></div>)}
 					</div>
 				</div>
 			</div>
