@@ -25,7 +25,9 @@ const Gameboards = () => {
 			console.log(hit)
 			setRowCorr(rowCor)
 			setColCorr(colCor)
-
+			
+			//change turn
+			socket.emit('change:turn')
 		})
 
 	useEffect(() => {
