@@ -26,10 +26,10 @@ const Game = () => {
 
 	return (
 		<div>
-			<Modal show={waiting} className='d-flex align-items-center text-center'>
-				<Modal.Body>
-					<p>Welcome to the game <b className='h4'> {userName}</b>!</p>
-					<p>You need to wait for another player.</p>
+			<Modal id="modalDialog" show={waiting} className='d-flex align-items-center text-center'>
+				<Modal.Body id="modalContent">
+					<h2>Welcome to the game {userName}!</h2>
+					<p>Wait here for another player.</p>
 				</Modal.Body>
 			</Modal>
 

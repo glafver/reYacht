@@ -27,3 +27,7 @@ form {
 #input-username::placeholder {
 	color: $gold;
 }
+
+#input-username:focus {
+	box-shadow: none;
+}

@@ -32,7 +32,8 @@ const UserRegistration = () => {
                 <h1 className='mb-4'>{!userName && 'Please sign your name:'}</h1>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3 form-username" >
-                        <Form.Control id="input-username"
+                        <Form.Control 
+							id="input-username"
                             onChange={e => setNameInput(e.target.value)}
                             placeholder="Enter name here"
                             ref={nameInputRef}
