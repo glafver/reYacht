@@ -1,43 +1,11 @@
 import { useGameContext } from '../contexts/UserContext'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import Chat from './Chat'
-/* import Results from './Results' */
+import Results from './Results'
 
 const Gameboards = () => {
 	const { userName, opponentName, yachts, shootTarget, move, setShootTarget, socket } = useGameContext()
-	const [hit, setHit] = useState([])
-	/* const [miss, setMiss] = useState() */
-	const [rowCorr, setRowCorr] = useState()
-	const [colCorr, setColCorr] = useState()
 
-	/* const handleMiss = ((data) => {
-		setMiss(data)
-	}) */
-
-	const handleHit = ((data, rowCor, colCor) => {
-			setHit(prevHits => 
-				[
-					...prevHits,
-					[rowCor, colCor]
-				]
-			)
-
-			console.log(hit)
-			setRowCorr(rowCor)
-			setColCorr(colCor)
-			
-			//change turn
-			socket.emit('change:turn')
-		})
-
-	useEffect(() => {
-		socket.on('shot:hit', handleHit)
-	}, [hit, socket])
-
-/* 	useEffect(() => {
-		socket.on('shot:miss', handleMiss)
-	}, [miss, socket])
- */
 	useEffect(() => {
 
 		const update = (e) => {
@@ -54,13 +22,12 @@ const Gameboards = () => {
 			socket.emit('game:shoot', shootTarget)
 	}, [shootTarget, socket])
 
+	socket.on('change:turn', (currentMover) => {
+		console.log(currentMover)
+	})
 	return (
 		<>
-			{/* <Results /> */}
-			<div className="result-container">
-				{shootTarget && <p>Shoot target: {shootTarget.row} {shootTarget.col}</p> }
-				<p>You {move === true ? "move" : "wait"}</p>
-			</div>
+			<Results />
 
 			<div className='container d-flex justify-content-around'>
 
@@ -75,9 +42,7 @@ const Gameboards = () => {
 				</div>
 				<div className="board-container text-center">
 					<h1>{opponentName}</h1>
-					
 					<div className="board enemy-grid m-auto" style={{ cursor: move === true ? "pointer" : "not-allowed" }}>
-						{hit && (<div style={{gridRow: rowCorr + "/" + (rowCorr+1), gridColumn: colCorr + "/" + (colCorr+1), backgroundColor: "red"}}></div>)}
 					</div>
 				</div>
 			</div>
