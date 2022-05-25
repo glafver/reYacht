@@ -8,27 +8,49 @@ const Gameboards = () => {
 	const [hit, setHit] = useState()
 	const [miss, setMiss] = useState()
 	const [shots, setShots] = useState([])
+	const [hitWholeYacht, setHitWholeYacht] = useState()
 
 	const [rowCorr, setRowCorr] = useState()
 	const [colCorr, setColCorr] = useState()
 
-	/* socket.on('turn', (info) => {
-		if (info.player === socket.id) {
-			return
+	let userShots = []
+
+	const userHits = (data) => {
+		console.log(data.corrs[0])
+		if(data.id === socket.id) {
+			userShots.push(data.corrs[0])
+
 		} else {
-			move = true;
+			return
 		}
-	}) */
+	}
 
 	const handleShots = (rowCor, colCor) => {
+		//check if it really is your turn
+
+		//place all previous shots on the board
 		setShots(prevShots => 
 			[
 				...prevShots,
 				[rowCor, colCor]
 			]
 		)
+		
+		setHit(rowCor, colCor)
+
+		//place the new shot on the board
+		if (hit) {
+			setHit()
+			if (hitWholeYacht) {
+				setHitWholeYacht()
+			}
+		} if (miss) {
+			setMiss()
+		} else {
+			return
+		}
 		console.log(shots)
-		socket.emit('shot')
+		socket.emit('shot:fired')
 	}
 
 	const handleHit = ((data, rowCor, colCor) => {
@@ -46,32 +68,13 @@ const Gameboards = () => {
 		/* socket.emit('change:turn') */
 	})
 
-	/* const handleMiss = ((data, rowCorMiss, colCorMiss) => {
-
-		setShots(prevShots => 
-			[
-				...prevShots,
-				[rowCorMiss, colCorMiss]
-			]
-		)
-
-		console.log(data)
-		setRowCorr(rowCorMiss)
-		setColCorr(colCorMiss)
-		
-		//change turn
-		/* socket.emit('change:turn') 
-	}) */
-
-	
+	useEffect(() => {
+		socket.on('store:hit', userHits)
+	}, [hit])
 
 	useEffect(() => {
 		socket.on('shot:hit', handleShots)
 	}, [hit])
-
-	/* useEffect(() => {
-		socket.on('shot:miss', handleMiss)
-	}, [miss]) */
 
 	useEffect(() => {
 
@@ -112,10 +115,15 @@ const Gameboards = () => {
 					<h1>{opponentName}</h1>
 					
 					<div className="board enemy-grid m-auto" style={{ cursor: move === true ? "pointer" : "not-allowed" }}>
-						{shots.map((rowCorr, colCorr) => {
+						{hit.map((rowCorr, colCorr) => {
 							return (<div style={{gridRow: rowCorr + "/" + (rowCorr+1), gridColumn: colCorr + "/" + (colCorr+1), backgroundColor: "red"}}></div>)
 						}) }
 					</div>
+{/* 					<div className="board enemy-grid m-auto" style={{ cursor: move === true ? "pointer" : "not-allowed" }}>
+						{miss.map((rowCorr, colCorr) => {
+							return (<div style={{gridRow: rowCorr + "/" + (rowCorr+1), gridColumn: colCorr + "/" + (colCorr+1), backgroundColor: "yellow"}}></div>)
+						}) }
+					</div> */}
 				</div>
 			</div>
 
