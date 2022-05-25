@@ -6,38 +6,58 @@ import Chat from './Chat'
 const Gameboards = () => {
 	const { userName, opponentName, yachts, shootTarget, move, setShootTarget, socket } = useGameContext()
 	const [hit, setHit] = useState([])
-	/* const [miss, setMiss] = useState() */
+	const [miss, setMiss] = useState([])
 	const [rowCorr, setRowCorr] = useState()
 	const [colCorr, setColCorr] = useState()
 
-	/* const handleMiss = ((data) => {
-		setMiss(data)
-	}) */
+	socket.on('turn', (info) => {
+		if (info.player === socket.id) {
+			return
+		} else {
+			move = true;
+		}
+	})
 
 	const handleHit = ((data, rowCor, colCor) => {
-			setHit(prevHits => 
-				[
-					...prevHits,
-					[rowCor, colCor]
-				]
-			)
+		setHit(prevHits => 
+			[
+				...prevHits,
+				[rowCor, colCor]
+			]
+		)
 
-			console.log(hit)
-			setRowCorr(rowCor)
-			setColCorr(colCor)
-			
-			//change turn
-			socket.emit('change:turn')
-		})
+		console.log(hit)
+		setRowCorr(rowCor)
+		setColCorr(colCor)
+		
+		//change turn
+		socket.emit('change:turn')
+	})
+
+	const handleMiss = ((data, rowCorMiss, colCorMiss) => {
+		setMiss(prevHits => 
+			[
+				...prevHits,
+				[rowCorMiss, colCorMiss]
+			]
+		)
+
+		console.log(miss)
+		setRowCorr(rowCorMiss)
+		setColCorr(colCorMiss)
+		
+		//change turn
+		socket.emit('change:turn')
+	})
 
 	useEffect(() => {
 		socket.on('shot:hit', handleHit)
 	}, [hit, socket])
 
-/* 	useEffect(() => {
+	useEffect(() => {
 		socket.on('shot:miss', handleMiss)
 	}, [miss, socket])
- */
+
 	useEffect(() => {
 
 		const update = (e) => {
