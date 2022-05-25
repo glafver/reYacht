@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import { Button, Form, InputGroup, ListGroup } from 'react-bootstrap'
-import { useGameContext } from '../Contexts/UserContext'
+import { useGameContext } from '../contexts/UserContext'
 
 const ChatRoom = () => {
     const [message, setMessage] = useState('')
@@ -25,17 +25,12 @@ const ChatRoom = () => {
         const msg = {
             username: userName,
             content: message,
-            timestamp: Date.now(),
+            // timestamp: Date.now(),
         }
 
         socket.emit('chat:message', msg)
 
-        setMessages(prevMessages =>
-            [
-                ...prevMessages,
-                { ...msg, self: true }
-            ]
-        )
+        setMessages(prevMessages => [...prevMessages, { ...msg }])
 
         setMessage('')
         messageRef.current.focus()
@@ -50,9 +45,6 @@ const ChatRoom = () => {
 
     }, [socket])
 
-    useEffect(() => {
-        messageRef.current && messageRef.current.focus()
-    }, [])
 
     return (
         <div className='my-5'>
@@ -89,6 +81,23 @@ const ChatRoom = () => {
                         <Button variant="success" type="submit" disabled={!message.length}>Send</Button>
                     </InputGroup>
                 </Form>
+
+                <div>
+                    <ListGroup>
+                        {messages.map((message, index) => {
+                            // const ts = new Date(message.timestamp)
+                            // const time = ts.toLocaleTimeString()
+                            return (
+                                <ListGroup.Item key={index} className={message.username === userName ? "d-flex justify-content-end bg-secondary bg-opacity-10" : "d-flex justify-content-start"}>
+                                    {/* <span>{time} </span> */}
+                                    {/* <span><b> {message.username}: </b> </span> */}
+                                    <span>{message.content}</span>
+                                </ListGroup.Item>
+                            )
+                        }
+                        )}
+                    </ListGroup>
+                </div>
             </div>
         </div>
     )

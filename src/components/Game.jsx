@@ -1,48 +1,39 @@
-// import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Gameboards from './Gameboards'
 import { Modal } from 'react-bootstrap'
 import CountdownTimer from './Countdown'
-import { useGameContext } from '../Contexts/UserContext'
+import { useGameContext } from '../contexts/UserContext'
 
 const Game = () => {
 
-	const { userName, setUserName, opponentName, setOpponentName, yachts, setYachts, opponentYachts, setOpponentYachts, countdown, waiting, setWaiting, setCountdown, socket } = useGameContext()
+	const { userName, opponentName, setOpponentName, countdown, waiting, setWaiting, setMove, setCountdown, socket } = useGameContext()
 
-	// users listening when the opponent will be found
-	socket.on('user:opponent_found', (waiting_opponent, room) => {
+	useEffect(() => {
+		// users listening when the opponent will be found
+		socket.on('user:opponent_found', (waiting_opponent, opponent, move) => {
+			console.log(move, 'move')
+			setMove(move)
+			setWaiting(waiting_opponent)
+			setOpponentName(opponent)
 
-		setWaiting(waiting_opponent)
+			// showing a modal with countdown
+			setCountdown(true)
 
-		// finding out opponent name for every user and settin yachts for both
-		// NEEDS TO B MOVED TO SERVER!!!!!!!!!!!!!!
-		if (room.users[0].username === userName) {
-			setOpponentName(room.users[1].username)
-			setOpponentYachts(room.users[1].yachts)
-		} else {
-			setOpponentName(room.users[0].username)
-			setOpponentYachts(room.users[0].yachts)
-		}
+		});
 
-		// showing a modal with countdown
-		setCountdown(true)
+	}, [socket, setOpponentName, setWaiting, setCountdown, setMove])
 
-	});
 
 	return (
 		<div>
-			<Modal show={waiting} className='d-flex align-items-center'>
+			<Modal show={waiting} className='d-flex align-items-center text-center'>
 				<Modal.Body>
-					Waiting for another player
+					<p>Welcome to the game <b className='h4'> {userName}</b>!</p>
+					<p>You need to wait for another player.</p>
 				</Modal.Body>
 			</Modal>
 
 			{countdown && <CountdownTimer />}
-
-			{userName &&
-				<div>
-					<h1 className='mb-4'>Welcome to the game {userName}!</h1>
-				</div>
-			}
 
 			{opponentName &&
 				<>

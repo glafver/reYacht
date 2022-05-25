@@ -1,6 +1,16 @@
-
 /* 
 #modalDialog {
 	background-color: black;
 	color: white;
 } */
+
+#countdown .modal-content {
+	background-color: transparent;
+	border: 0;
+}
+
+#countdown .modal-body {
+	font-size: 300px;
+	color: white;
+	font-family: 'Pinyon Script', cursive;
+}
