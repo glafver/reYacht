@@ -5,58 +5,73 @@ import Chat from './Chat'
 
 const Gameboards = () => {
 	const { userName, opponentName, yachts, shootTarget, move, setShootTarget, socket } = useGameContext()
-	const [hit, setHit] = useState([])
-	const [miss, setMiss] = useState([])
+	const [hit, setHit] = useState()
+	const [miss, setMiss] = useState()
+	const [shots, setShots] = useState([])
+
 	const [rowCorr, setRowCorr] = useState()
 	const [colCorr, setColCorr] = useState()
 
-	socket.on('turn', (info) => {
+	/* socket.on('turn', (info) => {
 		if (info.player === socket.id) {
 			return
 		} else {
 			move = true;
 		}
-	})
+	}) */
 
-	const handleHit = ((data, rowCor, colCor) => {
-		setHit(prevHits => 
+	const handleShots = (rowCor, colCor) => {
+		setShots(prevShots => 
 			[
-				...prevHits,
+				...prevShots,
 				[rowCor, colCor]
 			]
 		)
+		console.log(shots)
+		socket.emit('shot')
+	}
 
-		console.log(hit)
+	const handleHit = ((data, rowCor, colCor) => {
+		//check if it really is your turn
+
+		//place all previous hits on the board
+		
+		console.log("hit",hit)
+		
+		//place the new hit on the board
 		setRowCorr(rowCor)
 		setColCorr(colCor)
 		
 		//change turn
-		socket.emit('change:turn')
+		/* socket.emit('change:turn') */
 	})
 
-	const handleMiss = ((data, rowCorMiss, colCorMiss) => {
-		setMiss(prevHits => 
+	/* const handleMiss = ((data, rowCorMiss, colCorMiss) => {
+
+		setShots(prevShots => 
 			[
-				...prevHits,
+				...prevShots,
 				[rowCorMiss, colCorMiss]
 			]
 		)
 
-		console.log(miss)
+		console.log(data)
 		setRowCorr(rowCorMiss)
 		setColCorr(colCorMiss)
 		
 		//change turn
-		socket.emit('change:turn')
-	})
+		/* socket.emit('change:turn') 
+	}) */
+
+	
 
 	useEffect(() => {
-		socket.on('shot:hit', handleHit)
-	}, [hit, socket])
+		socket.on('shot:hit', handleShots)
+	}, [hit])
 
-	useEffect(() => {
+	/* useEffect(() => {
 		socket.on('shot:miss', handleMiss)
-	}, [miss, socket])
+	}, [miss]) */
 
 	useEffect(() => {
 
@@ -97,7 +112,9 @@ const Gameboards = () => {
 					<h1>{opponentName}</h1>
 					
 					<div className="board enemy-grid m-auto" style={{ cursor: move === true ? "pointer" : "not-allowed" }}>
-						{hit && (<div style={{gridRow: rowCorr + "/" + (rowCorr+1), gridColumn: colCorr + "/" + (colCorr+1), backgroundColor: "red"}}></div>)}
+						{shots.map((rowCorr, colCorr) => {
+							return (<div style={{gridRow: rowCorr + "/" + (rowCorr+1), gridColumn: colCorr + "/" + (colCorr+1), backgroundColor: "red"}}></div>)
+						}) }
 					</div>
 				</div>
 			</div>
