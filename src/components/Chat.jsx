@@ -51,7 +51,7 @@ const ChatRoom = () => {
             <div>
                 <h2>Chat</h2>
 
-                <div>
+{/*                 <div>
                     <ListGroup className="chat-container">
                         {messages.map((message, index) => {
                             const ts = new Date(message.timestamp)
@@ -66,13 +66,13 @@ const ChatRoom = () => {
                         }
                         )}
                     </ListGroup>
-                </div>
+                </div> */}
 
                 <Form className="chat-input-form" onSubmit={handleSubmit}>
                     <InputGroup className="input-form-holder">
                         <Form.Control
                             onChange={e => setMessage(e.target.value)}
-                            placeholder="Let's chat!"
+                            placeholder="Write something to your enemy"
                             ref={messageRef}
                             required
                             type="text"
@@ -83,19 +83,22 @@ const ChatRoom = () => {
                 </Form>
 
                 <div>
-                    <ListGroup>
+                    <ListGroup className="chat-container" id="chatContainer">
                         {messages.map((message, index) => {
                             // const ts = new Date(message.timestamp)
                             // const time = ts.toLocaleTimeString()
+
                             return (
-                                <ListGroup.Item key={index} className={message.username === userName ? "d-flex justify-content-end bg-secondary bg-opacity-10" : "d-flex justify-content-start"}>
-                                    {/* <span>{time} </span> */}
-                                    {/* <span><b> {message.username}: </b> </span> */}
-                                    <span>{message.content}</span>
-                                </ListGroup.Item>
+                                
+									<ListGroup.Item key={index} className={message.username === userName ? "my-msg" : "enemy-msg"}>
+										{/* <span>{time} </span> */}
+										{/* <span><b> {message.username}: </b> </span> */}
+										<span>{message.content}</span>
+									</ListGroup.Item>
+								
                             )
                         }
-                        )}
+                        ).reverse()}
                     </ListGroup>
                 </div>
             </div>
