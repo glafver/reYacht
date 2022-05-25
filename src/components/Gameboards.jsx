@@ -15,7 +15,7 @@ const Gameboards = () => {
 
 	let userShots = []
 
-	const userHits = (data) => {
+	const playerShots = (data) => {
 		console.log(data.corrs[0])
 		if(data.id === socket.id) {
 			userShots.push(data.corrs[0])
@@ -25,7 +25,7 @@ const Gameboards = () => {
 		}
 	}
 
-	const handleShots = (rowCor, colCor) => {
+	const handleHits = (rowCor, colCor) => {
 		//check if it really is your turn
 
 		//place all previous shots on the board
@@ -69,11 +69,11 @@ const Gameboards = () => {
 	})
 
 	useEffect(() => {
-		socket.on('store:hit', userHits)
+		socket.on('store:hit', playerShots)
 	}, [hit])
 
 	useEffect(() => {
-		socket.on('shot:hit', handleShots)
+		socket.on('shot:hit', handleHits)
 	}, [hit])
 
 	useEffect(() => {
@@ -115,7 +115,7 @@ const Gameboards = () => {
 					<h1>{opponentName}</h1>
 					
 					<div className="board enemy-grid m-auto" style={{ cursor: move === true ? "pointer" : "not-allowed" }}>
-						{hit.map((rowCorr, colCorr) => {
+						{shots.map((rowCorr, colCorr) => {
 							return (<div style={{gridRow: rowCorr + "/" + (rowCorr+1), gridColumn: colCorr + "/" + (colCorr+1), backgroundColor: "red"}}></div>)
 						}) }
 					</div>
