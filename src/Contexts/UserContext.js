@@ -16,6 +16,7 @@ const GameContextProvider = ({ children }) => {
     const [waiting, setWaiting] = useState()
     const [move, setMove] = useState()
     const [shootTarget, setShootTarget] = useState()
+    const [results_message, set_results_Message] = useState()
 
     const values = {
         userName,
@@ -32,6 +33,8 @@ const GameContextProvider = ({ children }) => {
         setMove,
         shootTarget,
         setShootTarget,
+        results_message,
+        set_results_Message,
         socket
     }
 

@@ -22,9 +22,11 @@ const UserRegistration = () => {
             setWaiting(result.waiting)
         })
         setUserName(nameInput)
+
         setNameInput('')
         navigate('/game')
     }
+
 
     return (
         <div>
