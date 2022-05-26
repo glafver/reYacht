@@ -4,7 +4,7 @@ import Chat from './Chat'
 import Results from './Results'
 
 const Gameboards = () => {
-	const { userName, opponentName, yachts, shootTarget, move, setShootTarget, socket } = useGameContext()
+	const { userName, opponentName, yachts, shootTarget, move, setMove, setShootTarget, socket } = useGameContext()
 
 	useEffect(() => {
 
@@ -19,12 +19,19 @@ const Gameboards = () => {
 
 	useEffect(() => {
 		// if (shootTarget.row !== 0 && shootTarget.col !== 0)
-			socket.emit('game:shoot', shootTarget)
+		socket.emit('game:shoot', shootTarget)
 	}, [shootTarget, socket])
 
-	socket.on('change:turn', (currentMover) => {
-		console.log(currentMover)
+	// When shot has been fired from us, the server tells us that it shouldnt be our turn anymore, upon receiving that message, the global move state is set to false for us
+	socket.on('shoot-status:false', () => {
+		setMove(false)
 	})
+
+	// When shot has been fired from our opponent, the server tells us that it should be our turn now, upon receiving that message, the global move state is therefore set to true
+	socket.on('shoot-status:true', () => {
+		setMove(true)
+	})
+
 	return (
 		<>
 			<Results />
