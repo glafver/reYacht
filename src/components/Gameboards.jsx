@@ -24,7 +24,6 @@ const Gameboards = () => {
 
 	const handleHit = (user_id, points, killed) => {
 		if (socket.id === user_id) {
-			// setHits(points)
 			setMove(false)
 			setHits(prev => [...prev, points])
 			if (killed) {
@@ -33,7 +32,6 @@ const Gameboards = () => {
 				set_results_Message('Good job! You shot one of the ships! Try more on the next turn! Wait and try again!')
 			}
 		} else {
-			// set_my_yachts_Hits(points)
 			setMove(true)
 			set_my_yachts_Hits(prev => [...prev, points])
 			if (killed) {
@@ -42,32 +40,26 @@ const Gameboards = () => {
 				set_results_Message('Oh no! One of your ships was shot! Your turn now!')
 			}
 		}
-		// console.log('hit', user_id, points, killed)
 	}
 
 	const handleMiss = (user_id, points) => {
 		console.log(points)
 		if (socket.id === user_id) {
-			// setMiss(points)
 			setMove(false)
 			setMiss(prev => [...prev, points])
 			set_results_Message('You missed! Wait and try again!')
 		} else {
-			// set_my_yachts_Miss(points)
 			setMove(true)
 			set_my_yachts_Miss(prev => [...prev, points])
 			set_results_Message('Your opponent missed! Your turn now!')
 		}
-		// console.log('miss', user_id, points)
 	}
 
 	const handleWinner = (user_id, points, killed) => {
 		if (socket.id === user_id) {
-			// setHits(points)
 			setHits(prev => [...prev, points])
 			set_results_Message('You won!!! Congratulations!!!')
 		} else {
-			// set_my_yachts_Hits(points)
 			set_my_yachts_Hits(prev => [...prev, points])
 			set_results_Message('Looooooseeeeeer!!!')
 		}
@@ -77,7 +69,6 @@ const Gameboards = () => {
 	useEffect(() => {
 		socket.on('shot:hit', handleHit)
 	}, [socket])
-	// }, [socket, move, setMove, setHits])
 
 	useEffect(() => {
 		socket.on('shot:miss', handleMiss)
