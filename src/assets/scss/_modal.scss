@@ -1,8 +1,9 @@
-/* 
+
 #modalDialog {
-	background-color: black;
-	color: white;
-} */
+	font-family: 'Pinyon Script', cursive;
+	font-size: 1.3rem;
+	width: 60%;
+}
 
 #countdown .modal-content {
 	background-color: transparent;
@@ -13,4 +14,13 @@
 	font-size: 300px;
 	color: white;
 	font-family: 'Pinyon Script', cursive;
+}
+#modalTitle {
+	text-align: center;
+	padding-left: 4%;
+	padding-top: 2%;
+}
+
+#modalContent {
+	margin: 4%;
 }

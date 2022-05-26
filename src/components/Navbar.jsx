@@ -25,16 +25,11 @@ const Navbar = () => {
 				{/* lägg i en egen component? */}
                 <Modal id="modalDialog" show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Game instructions</Modal.Title>
+                        <Modal.Title id="modalTitle">How to play</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>
+                    <Modal.Body id="modalContent">
                         Just like the tabletop game! Place your ships on the playing board. Your opponent will try to guess where your ships are. When it's your turn, try to guess where their ships are by choosing a tile on the opposing board. Try to sink all their battleships to win the game.
                     </Modal.Body>
-{/*                     <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            Close
-                        </Button>
-                    </Modal.Footer> */}
                 </Modal>
             </nav>
         </>

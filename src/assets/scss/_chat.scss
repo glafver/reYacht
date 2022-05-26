@@ -1,2 +1,27 @@
 @import 'colors';
 
+.chat-container {
+	width: 100%;
+	height: 110px;
+	overflow-y: scroll;
+	overscroll-behavior: contain;
+}
+
+.chat-input-form {
+	width: 100%;
+}
+
+.input-form-holder {
+	width: 100%;
+}
+
+#chatContainer .my-msg {
+	display: flex;
+	justify-content: end;
+
+}
+
+#chatContainer .enemy-msg {
+	display: flex;
+	justify-content: start;
+}
