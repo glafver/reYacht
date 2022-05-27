@@ -1,8 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import { Link } from 'react-router-dom'
-import logo from '../assets/images/reYacht-logo.jpg'
 import { useState } from 'react'
-import { Button, Modal } from 'react-bootstrap'
+import { Modal } from 'react-bootstrap'
 
 const Navbar = () => {
     const [show, setShow] = useState(false);
@@ -13,16 +12,16 @@ const Navbar = () => {
     return (
         <>
             <nav className="navbar">
-				<div className="container">
-					<Link className="logo navbar-brand" to={'/'}>
-						<h1>Battle of the Yachts</h1>
-					</Link>
-					<button className="button btn-gold" onClick={handleShow}>
-						Game instructions
-					</button>
-				</div>
+                <div className="container">
+                    <Link className="logo navbar-brand" to={'/'}>
+                        <h1>Battle of the Yachts</h1>
+                    </Link>
+                    <button className="button btn-gold" onClick={handleShow}>
+                        Game instructions
+                    </button>
+                </div>
 
-				{/* lägg i en egen component? */}
+                {/* lägg i en egen component? */}
                 <Modal id="modalDialog" show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title id="modalTitle">How to play</Modal.Title>

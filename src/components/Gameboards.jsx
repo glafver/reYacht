@@ -15,8 +15,6 @@ const Gameboards = () => {
 
 	const update = (e) => {
 		e.preventDefault()
-		console.log('test function lol', e.nativeEvent.offsetY, e.nativeEvent.offsetX, Math.ceil(e.nativeEvent.offsetY / 30) - 1, Math.ceil(e.nativeEvent.offsetX / 30) - 1)
-		console.log('The div was clicked.', e);
 		if (move && !e.target.classList.contains('blocked')) {
 			setShootTarget({ row: Math.ceil(e.nativeEvent.offsetY / 30) - 1, col: Math.ceil(e.nativeEvent.offsetX / 30) - 1 })
 		}
@@ -81,10 +79,6 @@ const Gameboards = () => {
 	useEffect(() => {
 		socket.emit('game:shoot', shootTarget)
 	}, [shootTarget, socket])
-
-	useEffect(() => {
-		socket.on('shot:winner', handleWinner)
-	}, [socket])
 
 	return (
 		<>
