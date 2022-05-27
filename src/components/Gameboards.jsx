@@ -2,20 +2,27 @@ import { useGameContext } from '../contexts/UserContext'
 import { useEffect } from 'react'
 import Chat from './Chat'
 import Results from './Results'
+import Restart from './Restart'
 
 const Gameboards = () => {
-	const { userName, opponentName, yachts, shootTarget, move, setMove, setShootTarget, socket } = useGameContext()
+	const { userName, opponentName, yachts, shootTarget, move, setMove, setShootTarget, socket, gameStatus } = useGameContext()
 
 	useEffect(() => {
 
 		const update = (e) => {
+			// Prevent default
 			if (move && e.target.classList.contains('enemy-grid')) {
+				// add e.nativeEvent
 				setShootTarget({ row: Math.ceil(e.offsetY / 30) - 1, col: Math.ceil(e.offsetX / 30) - 1})
 			}
 		}
 		window.addEventListener('click', update)
 
 	}, [setShootTarget, move, socket])
+
+	useEffect(() => {
+		console.log(gameStatus)
+	}, [])
 
 	useEffect(() => {
 		// if (shootTarget.row !== 0 && shootTarget.col !== 0)
@@ -34,8 +41,7 @@ const Gameboards = () => {
 
 	return (
 		<>
-			<Results />
-
+			{gameStatus && <Results />}
 			<div className='container d-flex justify-content-around'>
 
 				<div className="board-container text-center">

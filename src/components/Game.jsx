@@ -3,6 +3,7 @@ import Gameboards from './Gameboards'
 import { Modal } from 'react-bootstrap'
 import CountdownTimer from './Countdown'
 import { useGameContext } from '../contexts/UserContext'
+import Restart from './Restart'
 
 const Game = () => {
 
