@@ -7,7 +7,11 @@
 }
 
 .board {
-	background-color: $oceanblue;
+	// background-color: $oceanblue;
+
+	background-image: url(../images/field.gif);
+	background-repeat: no-repeat;
+	background-size: cover;
 
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(25px, 1fr));
