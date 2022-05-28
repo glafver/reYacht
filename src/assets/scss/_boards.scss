@@ -7,16 +7,53 @@
 }
 
 .board {
-	// background-color: $oceanblue;
-
-	background-image: url(../images/field.gif);
-	background-repeat: no-repeat;
-	background-size: cover;
+	background-color: rgb(51, 51, 51);
 
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(25px, 1fr));
-	grid-template-rows: repeat(auto-fill, minmax(25px, 1fr));
+	// grid-template-columns: repeat(auto-fill, minmax(25px, 1fr));
+	// grid-template-rows: repeat(auto-fill, minmax(25px, 1fr));
+	grid-template-rows: repeat(10, 1fr);
+	grid-template-columns: repeat(10, 1fr);
 	height: 300px;
 	width: 300px;
-	gap: 1%;
+	gap: 1px;
+}
+
+.board_cell {
+	background-color: $lightOceanBlue;
+}
+
+.board_yacht {
+	background-color: $gold;
+}
+
+.board_hit {
+	background-color: $hit;
+	cursor: not-allowed;
+}
+
+.board_miss {
+	// background-color: $miss;
+	background-image: url(../images/miss.png);
+	background-size: cover;
+	cursor: not-allowed;
+}
+
+.board_killed {
+	background-color: $killed;
+	cursor: not-allowed;
+}
+
+.board_my_yacht_hit {
+	background-color: $light_hit;
+}
+
+.board_my_yacht_miss {
+	// background-color: $light_miss;
+	background-image: url(../images/miss.png);
+	background-size: cover;
+}
+
+.board_my_yacht_killed {
+	background-color: $light_killed;
 }
