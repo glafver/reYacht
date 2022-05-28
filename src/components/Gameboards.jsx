@@ -1,5 +1,5 @@
 import { useGameContext } from '../contexts/UserContext'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import Chat from './Chat'
 // import img_hit from '../assets/images/hit.png'
 // import img_miss from '../assets/images/miss.png'
@@ -7,78 +7,107 @@ import Results from './Results'
 
 const Gameboards = () => {
 	const { userName, opponentName, yachts, shootTarget, move, setMove, setShootTarget, set_results_Message, socket } = useGameContext()
-	const [hits, setHits] = useState([])
-	const [miss, setMiss] = useState([])
-
-	const [my_yachts_hits, set_my_yachts_Hits] = useState([])
-	const [my_yachts_miss, set_my_yachts_Miss] = useState([])
 
 	const update = (e) => {
 		e.preventDefault()
 		if (move && !e.target.classList.contains('blocked')) {
-			setShootTarget({ row: Math.ceil(e.nativeEvent.offsetY / 30) - 1, col: Math.ceil(e.nativeEvent.offsetX / 30) - 1 })
-		}
-	}
 
-	const handleHit = (user_id, points, killed) => {
-		if (socket.id === user_id) {
-			setMove(false)
-			setHits(prev => [...prev, points])
-			if (killed) {
-				set_results_Message('Great! You killed one of the ships! Wait and try again!')
-			} else {
-				set_results_Message('Good job! You shot one of the ships! Try more on the next turn! Wait and try again!')
-			}
-		} else {
-			setMove(true)
-			set_my_yachts_Hits(prev => [...prev, points])
-			if (killed) {
-				set_results_Message('Tragedy! One of your ships was killed! Your turn now!')
-			} else {
-				set_results_Message('Oh no! One of your ships was shot! Your turn now!')
-			}
+			let result = e.target.id.split("_")
+			console.log('target', Number(String(result[1])[0]), Number(String(result[1])[1]))
+			setShootTarget({ row: Number(String(result[1])[0]), col: Number(String(result[1])[1]) })
 		}
-	}
-
-	const handleMiss = (user_id, points) => {
-		console.log(points)
-		if (socket.id === user_id) {
-			setMove(false)
-			setMiss(prev => [...prev, points])
-			set_results_Message('You missed! Wait and try again!')
-		} else {
-			setMove(true)
-			set_my_yachts_Miss(prev => [...prev, points])
-			set_results_Message('Your opponent missed! Your turn now!')
-		}
-	}
-
-	const handleWinner = (user_id, points, killed) => {
-		if (socket.id === user_id) {
-			setHits(prev => [...prev, points])
-			set_results_Message('You won!!! Congratulations!!!')
-		} else {
-			set_my_yachts_Hits(prev => [...prev, points])
-			set_results_Message('Looooooseeeeeer!!!')
-		}
-		console.log('winner', user_id, points, killed)
 	}
 
 	useEffect(() => {
+		const handleHit = (user_id, point, killed_yacht) => {
+			console.log('hit', point)
+			if (socket.id === user_id) {
+				setMove(false)
+
+				let cell = document.getElementById('enemyfield_' + point.row + point.col)
+				cell.classList.add('board_hit', 'blocked')
+
+				if (killed_yacht) {
+					for (let point of killed_yacht.points) {
+						let cell = document.getElementById('enemyfield_' + point.row + point.col)
+						cell.classList.add('board_killed', 'blocked')
+					}
+					set_results_Message('Great! You killed one of the ships! Wait and try again!')
+				} else {
+					set_results_Message('Good job! You shot one of the ships! Try more on the next turn! Wait and try again!')
+				}
+			} else {
+				setMove(true)
+
+				let cell = document.getElementById('myfield_' + point.row + point.col)
+				cell.classList.add('board_my_yacht_hit')
+				if (killed_yacht) {
+					for (let point of killed_yacht.points) {
+						let cell = document.getElementById('myfield_' + point.row + point.col)
+						cell.classList.add('board_my_yacht_killed')
+					}
+					set_results_Message('Tragedy! One of your ships was killed! Your turn now!')
+				} else {
+					set_results_Message('Oh no! One of your ships was shot! Your turn now!')
+				}
+			}
+		}
 		socket.on('shot:hit', handleHit)
-	}, [socket])
+	}, [socket, setMove, set_results_Message])
 
 	useEffect(() => {
+		const handleMiss = (user_id, point) => {
+			console.log('miss', point)
+			if (socket.id === user_id) {
+				setMove(false)
+
+				let cell = document.getElementById('enemyfield_' + point.row + point.col)
+				cell.classList.add('board_miss', 'blocked')
+				set_results_Message('You missed! Wait and try again!')
+			} else {
+				setMove(true)
+				let cell = document.getElementById('myfield_' + point.row + point.col)
+				cell.classList.add('board_my_yacht_miss')
+				set_results_Message('Your opponent missed! Your turn now!')
+			}
+		}
 		socket.on('shot:miss', handleMiss)
-	}, [socket])
+	}, [socket, setMove, set_results_Message])
 
 	useEffect(() => {
+		const handleWinner = (user_id, point, killed_yacht) => {
+			if (socket.id === user_id) {
+
+				let cell = document.getElementById('enemyfield_' + point.row + point.col)
+				cell.classList.add('board_hit', 'blocked')
+				cell.style.cursor = "not-allowed"
+				set_results_Message('You won!!! Congratulations!!!')
+			} else {
+
+				let cell = document.getElementById('myfield_' + point.row + point.col)
+				cell.classList.add('board_my_yacht_hit')
+				set_results_Message('Looooooseeeeeer!!!')
+			}
+		}
 		socket.on('shot:winner', handleWinner)
-	}, [socket])
+	}, [socket, set_results_Message])
 
 	useEffect(() => {
 		socket.emit('game:shoot', shootTarget)
 	}, [shootTarget, socket])
+
+	useEffect(() => {
+		if (yachts.length !== 0) {
+			for (let yacht of yachts) {
+				for (let point of yacht.points) {
+					let cell = document.getElementById('myfield_' + point.row + point.col)
+					cell.classList.add('board_yacht')
+				}
+
+			}
+		}
+
+	}, [yachts])
 
 	return (
 		<>
@@ -89,37 +118,26 @@ const Gameboards = () => {
 					<h1>{userName}</h1>
 					<div className="board player-grid m-auto" >
 
-						{yachts && yachts.map(yacht =>
-							<div key={`yacht ${yacht.row_start} ${yacht.col_start}`} style={{ gridArea: (yacht.row_start + 1) + "/" + (yacht.col_start + 1) + "/" + yacht.row_end + "/" + yacht.col_end, backgroundColor: "green" }}>
+						{yachts &&
+							[...Array(100).keys()].map((div) =>
+								<div key={div} className="board_cell" id={div < 10 ? 'myfield_0' + div : 'myfield_' + div}></div>
+							)
+						}
 
-							</div>
-						)}
-						{my_yachts_miss.length !== 0 && my_yachts_miss.map(miss =>
-							<div key={`my_yachts_miss_${miss.row}_${miss.col}`} className="blocked d-flex" style={{ gridRow: (miss.row + 1), gridColumn: (miss.col + 1), backgroundColor: "yellow", cursor: "not-allowed" }}>
-								{/* <img className='img-fluid' src={img_miss} alt="" /> */}
-							</div>
-						)}
-						{my_yachts_hits.length !== 0 && my_yachts_hits.map(hit =>
-							<div key={`my_yachts_hits_${hit.row}_${hit.col}`} className="blocked d-flex" style={{ gridRow: (hit.row + 1), gridColumn: (hit.col + 1), backgroundColor: "red", cursor: "not-allowed" }}>
-								{/* <img className='img-fluid' src={img_hit} alt="" /> */}
-							</div>
-						)}
+
 					</div>
 				</div>
 				<div className="board-container text-center">
 					<h1>{opponentName}</h1>
 
-					<div className="board enemy-grid m-auto" style={{ cursor: move === true ? "pointer" : "not-allowed" }} onClick={update}>
-						{miss.length !== 0 && miss.map(miss =>
-							<div key={`miss_${miss.row}_${miss.col}`} className="blocked d-flex" style={{ gridRow: (miss.row + 1), gridColumn: (miss.col + 1), backgroundColor: "yellow", cursor: "not-allowed" }}>
-								{/* <img className='img-fluid' src={img_miss} alt="" /> */}
-							</div>
-						)}
-						{hits.length !== 0 && hits.map(hit =>
-							<div key={`hits_${hit.row}_${hit.col}`} className="blocked" style={{ gridRow: (hit.row + 1), gridColumn: (hit.col + 1), backgroundColor: "red", cursor: "not-allowed" }}>
-								{/* <img className='img-fluid' src={img_hit} alt="" /> */}
-							</div>
-						)}
+					<div className="board enemy-grid m-auto" style={{ cursor: move === true ? "pointer" : "not-allowed" }} >
+
+						{
+							[...Array(100).keys()].map((div) =>
+								<div key={div} className="board_cell" id={div < 10 ? 'enemyfield_0' + div : 'enemyfield_' + div} onClick={update}></div>
+							)
+						}
+
 					</div>
 				</div>
 			</div>

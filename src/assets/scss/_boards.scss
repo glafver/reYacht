@@ -7,7 +7,7 @@
 }
 
 .board {
-	background-color: $oceanblue;
+	background-color: rgb(51, 51, 51);
 
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(25px, 1fr));
@@ -15,4 +15,39 @@
 	height: 300px;
 	width: 300px;
 	gap: 1%;
+}
+
+.board_cell {
+	background-color: $lightOceanBlue;
+}
+
+.board_yacht {
+	background-color: $gold;
+}
+
+.board_hit {
+	background-color: $hit;
+	cursor: not-allowed;
+}
+
+.board_miss {
+	background-color: $miss;
+	cursor: not-allowed;
+}
+
+.board_killed {
+	background-color: $killed;
+	cursor: not-allowed;
+}
+
+.board_my_yacht_hit {
+	background-color: $light_hit;
+}
+
+.board_my_yacht_miss {
+	background-color: $light_miss;
+}
+
+.board_my_yacht_killed {
+	background-color: $light_killed;
 }

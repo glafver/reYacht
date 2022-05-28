@@ -6,22 +6,28 @@ import { useGameContext } from '../contexts/UserContext'
 
 const Game = () => {
 
-	const { userName, opponentName, setOpponentName, countdown, waiting, setWaiting, setMove, setCountdown, socket } = useGameContext()
+	const { userName, opponentName, setOpponentName, countdown, waiting, setWaiting, setMove, setCountdown, set_results_Message, socket } = useGameContext()
 
 	useEffect(() => {
 		// users listening when the opponent will be found
 		socket.on('user:opponent_found', (waiting_opponent, opponent, move) => {
-			console.log(move, 'move')
+
 			setMove(move)
 			setWaiting(waiting_opponent)
 			setOpponentName(opponent)
+
+			if (move) {
+				set_results_Message("You shoot first! Try to hit one of the enemy's yachts!")
+			} else {
+				set_results_Message("You wait for your turn. Your enemy is shooting first.")
+			}
 
 			// showing a modal with countdown
 			setCountdown(true)
 
 		});
 
-	}, [socket, setOpponentName, setWaiting, setCountdown, setMove])
+	}, [socket, setOpponentName, setWaiting, setCountdown, setMove, set_results_Message])
 
 
 	return (
