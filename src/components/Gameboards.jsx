@@ -118,7 +118,7 @@ const Gameboards = () => {
 
 						{yachts &&
 							[...Array(100).keys()].map((div) =>
-								<div key={div} className="board_cell" id={div < 10 ? 'myfield_0' + div : 'myfield_' + div}></div>
+								<div key={div} className="board_cell" id={div < 10 ? 'myfield_0' + div : 'myfield_' + div} style={{ cursor: "not-allowed" }}></div>
 							)
 						}
 
