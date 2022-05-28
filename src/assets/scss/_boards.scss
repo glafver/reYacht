@@ -10,11 +10,13 @@
 	background-color: rgb(51, 51, 51);
 
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(25px, 1fr));
-	grid-template-rows: repeat(auto-fill, minmax(25px, 1fr));
+	// grid-template-columns: repeat(auto-fill, minmax(25px, 1fr));
+	// grid-template-rows: repeat(auto-fill, minmax(25px, 1fr));
+	grid-template-rows: repeat(10, 1fr);
+	grid-template-columns: repeat(10, 1fr);
 	height: 300px;
 	width: 300px;
-	gap: 1%;
+	gap: 1px;
 }
 
 .board_cell {

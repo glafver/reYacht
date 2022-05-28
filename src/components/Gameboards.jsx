@@ -1,8 +1,6 @@
 import { useGameContext } from '../contexts/UserContext'
 import { useEffect } from 'react'
 import Chat from './Chat'
-// import img_hit from '../assets/images/hit.png'
-// import img_miss from '../assets/images/miss.png'
 import Results from './Results'
 
 const Gameboards = () => {
