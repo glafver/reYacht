@@ -17,7 +17,6 @@ const Gameboards = () => {
 
 	useEffect(() => {
 		const handleMiss = (user_id, point) => {
-			console.log('miss', point)
 			if (socket.id === user_id) {
 				setMove(false)
 
@@ -115,7 +114,6 @@ const Gameboards = () => {
 							)
 						}
 
-
 					</div>
 				</div>
 				<div className="board-container text-center">
@@ -123,9 +121,9 @@ const Gameboards = () => {
 
 					<div className="board enemy-grid m-auto" style={{ cursor: move === true ? "pointer" : "not-allowed" }} >
 
-						{
+						{yachts &&
 							[...Array(100).keys()].map((div) =>
-								<div key={div} className="board_cell" id={div < 10 ? 'enemyfield_0' + div : 'enemyfield_' + div} onClick={update}></div>
+								<div key={div} className="board_cell" id={div < 10 ? 'enemyfield_0' + div : 'enemyfield_' + div} onClick={update} style={{ cursor: move === true ? "pointer" : "not-allowed" }} ></div>
 							)
 						}
 
