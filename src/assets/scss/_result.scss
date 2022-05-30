@@ -1,7 +1,7 @@
 @import 'colors';
 
 .result-container {
-	width: 60%;
+	width: 100%;
 	height: 15vh;
 	border: solid 1px $gold;
 	margin: 4% auto;
@@ -12,8 +12,10 @@
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
+	text-align: center;
 }
 
 .result-container p {
 	color: black;
+	margin-bottom: 0;
 }

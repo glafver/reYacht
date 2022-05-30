@@ -44,10 +44,10 @@ const UserRegistration = () => {
     return (
         <div>
 
-            {!userName && <div className="form-container">
-                <h1 className='mb-4'>{!userName && 'Please sign your name:'}</h1>
+            {!userName && <div className="game-container form-container">
+                <h1>{!userName && "Please sign your name:"}</h1>
                 <Form onSubmit={handleSubmit}>
-                    <Form.Group className="mb-3 form-username" >
+                    <Form.Group className="form-username">
                         <Form.Control
                             id="input-username"
                             onChange={e => setNameInput(e.target.value)}
@@ -56,14 +56,14 @@ const UserRegistration = () => {
                             required
                             type="text"
                             value={nameInput} />
-                        <button className="button btn-gold" type="submit">Start the game</button>
+                        <button className="button btn-gold" id="start-button" type="submit">Start the game</button>
                     </Form.Group>
                 </Form>
             </div>
             }
 
 
-            <Modal className='d-flex align-items-center text-center' show={yachtChoice}>
+            <Modal className="d-flex align-items-center text-center" show={yachtChoice}>
                 <Modal.Body >
                     <p>Do you want to place yachts yourself or get them randomly?</p>
 

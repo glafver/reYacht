@@ -12,16 +12,19 @@ body,
 
 body {
 	background-color: $bg-color;
-}
-
-.container {
-	font-family: 'Pinyon Script', cursive;
-	font-weight: 900;
+	margin: 0;
 }
 
 h1, h2 {
 	font-family: 'Pinyon Script', cursive;
 	font-size: 0.9rem;
+}
+
+.game-container {
+	font-family: 'Pinyon Script', cursive;
+	font-weight: 900;
+	width: 90%;
+	margin: auto;
 }
 
 .button {
@@ -30,9 +33,9 @@ h1, h2 {
 	padding: 0.5rem 1rem;
 	margin: 0.5rem 1rem;
 
-	font-family: 'Pinyon Script', cursive;
-	font-weight: 900;
-	font-size: 1.2rem;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 600;
+	font-size: 0.7rem;
 }
 
 .btn-gold {

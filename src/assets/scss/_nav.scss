@@ -1,5 +1,11 @@
 @import 'colors';
 
+.nav-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
 .logo {
 	color: $nav-font-color;
 }
@@ -10,7 +16,7 @@
 
 .navbar {
 	background-color: $nav-color;
-	height: 15vh;
+	height: 12vh;
 	padding: 1rem;
 }
 
@@ -22,4 +28,18 @@
 
 .navbar a h1 {
 	margin-bottom: 0;
+}
+
+@media screen and (min-width: 834px) {
+	.navbar {
+		height: 10vh;
+		padding: 0.8rem;
+	}
+}
+
+@media screen and (min-width: 1440px) {
+	.navbar {
+		height: 8vh;
+		padding: 0.5rem;
+	}
 }

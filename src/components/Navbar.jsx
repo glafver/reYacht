@@ -13,7 +13,7 @@ const Navbar = () => {
     return (
         <>
             <nav className="navbar">
-                <div className="container">
+                <div className="game-container nav-container">
                     <Link className="logo navbar-brand" to={'/'}>
                         <h1>Battle of the Yachts</h1>
                     </Link>

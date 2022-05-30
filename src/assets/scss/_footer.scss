@@ -2,7 +2,7 @@
 
 footer {
 	bottom: 0;
-	height: 10vh;
+	height: 6vh;
 	background-color: black;
 	padding: 1em;
 	color: white;
@@ -12,8 +12,15 @@ footer {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	position: sticky;
 }
 
 footer p {
 	margin: 0;
+}
+
+@media screen and (min-width: 1440px) {
+	footer {
+		height: 5vh;
+	}
 }
