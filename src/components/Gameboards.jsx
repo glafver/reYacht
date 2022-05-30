@@ -101,7 +101,7 @@ const Gameboards = () => {
 	return (
 		<>
 			<Results />
-			<div className='container d-flex justify-content-around'>
+			<div className="all-boards container">
 
 				<div className="board-container text-center">
 					<h1>{userName}</h1>
