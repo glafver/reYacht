@@ -5,7 +5,7 @@ import { Modal } from 'react-bootstrap'
 
 const CountdownTimer = () => {
 
-    const [counter, setCounter] = useState(5)
+    const [counter, setCounter] = useState(3)
     const { countdown, setCountdown } = useGameContext()
 
     useEffect(() => {

@@ -8,7 +8,7 @@ import Home from './pages/HomePage'
 
 const App = () => {
 	return (
-		<div className="text-center">
+		<div>
 			<Navbar />
 			<Routes>
 				<Route path="/" element={<Home />}></Route>
