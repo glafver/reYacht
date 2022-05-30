@@ -93,7 +93,6 @@ const Gameboards = () => {
 					let cell = document.getElementById('myfield_' + point.row + point.col)
 					cell.classList.add('board_yacht')
 				}
-
 			}
 		}
 

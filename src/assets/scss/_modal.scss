@@ -51,10 +51,41 @@
 	cursor: not-allowed;
 }
 
-.active {
-	background-color: $killed;
-}
+// .active {
+// 	background-color: $killed;
+// }
 
 .inactive {
-	background-color: $light_killed;
+	// background-color: $light_killed;
+	opacity: 50%;
+}
+
+.vertical_4 {
+	background-image: url(../images/vertical_4.png);
+	background-size: cover;
+}
+
+.vertical_3 {
+	background-image: url(../images/vertical_3.png);
+	background-size: cover;
+}
+
+.vertical_2 {
+	background-image: url(../images/vertical_2.png);
+	background-size: cover;
+}
+
+.horizontal_4 {
+	background-image: url(../images/horizontal_4.png);
+	background-size: cover;
+}
+
+.horizontal_3 {
+	background-image: url(../images/horizontal_3.png);
+	background-size: cover;
+}
+
+.horizontal_2 {
+	background-image: url(../images/horizontal_2.png);
+	background-size: cover;
 }
