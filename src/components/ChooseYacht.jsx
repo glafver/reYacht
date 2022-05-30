@@ -107,7 +107,7 @@ const ChooseYacht = () => {
 
     const setYacht = (e) => {
         e.preventDefault()
-
+        e.target.classList.remove('hover_cell')
         let cells = document.getElementsByClassName('inactive')
 
         while (cells.length) {
