@@ -1,4 +1,4 @@
-import { Form, Button, Modal } from 'react-bootstrap'
+import { Form, Modal } from 'react-bootstrap'
 import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGameContext } from '../contexts/UserContext'
