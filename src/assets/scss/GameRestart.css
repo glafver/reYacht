@@ -1,0 +1,23 @@
+.new-opponent {
+    border: none;
+}
+
+.rematch-button {
+    border: none;
+    background-color: lightgray;
+    animation: glowing 1500ms infinite;
+}
+
+@keyframes glowing {
+    0% {
+        background-color: rgb(85, 84, 84);
+    }
+
+    50% {
+        background-color: rgb(102, 102, 102)
+    }
+
+    100% {
+        background-color: rgb(117, 117, 117);
+    }
+}

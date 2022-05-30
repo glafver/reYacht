@@ -2,9 +2,10 @@ import { useGameContext } from '../contexts/UserContext'
 import { useEffect } from 'react'
 import Chat from './Chat'
 import Results from './Results'
+import GameRestart from './GameRestart'
 
 const Gameboards = () => {
-	const { userName, opponentName, yachts, shootTarget, move, setMove, setShootTarget, set_results_Message, socket } = useGameContext()
+	const { userName, opponentName, yachts, shootTarget, move, gameRestart, setMove, setShootTarget, set_results_Message, setGameRestart, socket } = useGameContext()
 
 	const update = (e) => {
 		e.preventDefault()
@@ -65,6 +66,7 @@ const Gameboards = () => {
 
 	useEffect(() => {
 		const handleWinner = (user_id, point, killed_yacht) => {
+			setGameRestart(true)
 			if (socket.id === user_id) {
 
 				for (let point of killed_yacht.points) {
@@ -100,6 +102,7 @@ const Gameboards = () => {
 
 	return (
 		<>
+			{gameRestart && <GameRestart/>}
 			<Results />
 			<div className='container d-flex justify-content-around'>
 
