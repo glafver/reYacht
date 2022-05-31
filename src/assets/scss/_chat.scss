@@ -6,14 +6,46 @@
 */
 
 .chat-container {
+	margin: 2rem 0;
+}
+
+.chatMsg-container {
 	font-family: $standardFont;
 	font-weight: 300;
 	font-size: 0.8rem;
 
 	width: 100%;
-	height: 110px;
+	height: 50vh;
 	overflow-y: scroll;
 	overscroll-behavior: contain;
+}
+
+#chatTitle {
+	text-align: center;
+}
+
+#inputChatMsg {
+	border: none;
+	border-bottom: 2px solid rgb(0, 0, 0);
+	border-radius: none;
+	border-radius: 0px;
+
+	font-style: italic;
+	font-family: $cursiveFont;
+	font-size: 1rem;
+	text-align: center;
+}
+	
+#inputChatMsg::placeholder {
+	color: #ae9b8946;
+}
+
+#inputChatMsg:focus {
+	box-shadow: none;
+}
+
+#chat-btn {
+	margin: 0;
 }
 
 .chat-input-form {
@@ -22,6 +54,7 @@
 
 .input-form-holder {
 	width: 100%;
+	margin-bottom: 1%;
 }
 
 #chatContainer {
@@ -32,9 +65,40 @@
 	display: flex;
 	justify-content: flex-end;
 	text-align: right;
+	border: none;
+
 }
 
 #chatContainer .enemy-msg {
 	display: flex;
 	justify-content: flex-start;
+	border: none;
+}
+
+.msg-holder {
+	max-width: 50%;
+}
+
+.chat-username {
+	font-size: 0.5rem;
+	color: $gold;
+	margin-bottom: 0;
+}
+
+.chat-msg {
+	color: white;
+	padding: 1rem;
+	inline-size: min-content;
+	width: 100%;
+}
+
+.enemy-msg .chat-msg {
+	border-radius: 0 20px 20px 20px;
+	background-color: $oceanblue;
+
+}
+
+.my-msg .chat-msg {
+	border-radius: 20px 0 20px 20px;
+	background-color: $lightOceanBlue;
 }
