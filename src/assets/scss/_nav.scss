@@ -4,6 +4,12 @@
 * Nav
 */
 
+.navbar {
+	background-color: $nav-color;
+	height: 15vh;
+	padding: 1rem;
+}
+
 .nav-container {
 	display: flex;
 	justify-content: space-between;
@@ -12,30 +18,17 @@
 
 .logo {
 	color: $nav-font-color;
-}
-
-.logo h1 {
-	font-size: 1.7rem;
-}
-
-.navbar {
-	background-color: $nav-color;
-	height: 12vh;
-	padding: 1rem;
-}
-
-.navbar a {
 	display: flex;
 	align-items: center;
-
 }
 
-.navbar a:hover {
-	color: $gold;
-}
-
-.navbar a h1 {
+.logoText {
+	font-size: 1.7rem;
 	margin-bottom: 0;
+}
+
+.logo:hover {
+	color: $gold;
 }
 
 @media screen and (min-width: 600px) {
