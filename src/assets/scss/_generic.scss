@@ -1,4 +1,5 @@
 @import 'colors';
+@import 'fonts';
 
 /**
 * Generic styles
@@ -16,7 +17,7 @@ body {
 }
 
 h1, h2 {
-	font-family: 'Pinyon Script', cursive;
+	font-family: $cursiveFont;
 	font-size: 0.9rem;
 }
 
@@ -25,7 +26,7 @@ p {
 }
 
 .game-container {
-	font-family: 'Pinyon Script', cursive;
+	font-family: $cursiveFont;
 	font-weight: 900;
 	width: 90%;
 	margin: auto;
@@ -37,7 +38,7 @@ p {
 	padding: 0.5rem 1rem;
 	margin: 0.5rem 1rem;
 
-	font-family: 'Poppins', sans-serif;
+	font-family: $standardFont;
 	font-weight: 600;
 	font-size: 0.7rem;
 }

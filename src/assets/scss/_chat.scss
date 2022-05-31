@@ -1,7 +1,12 @@
 @import 'colors';
+@import 'fonts';
+
+/**
+* Chat
+*/
 
 .chat-container {
-	font-family: 'Poppins', sans-serif;
+	font-family: $standardFont;
 	font-weight: 300;
 	font-size: 0.8rem;
 

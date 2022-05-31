@@ -1,3 +1,4 @@
+@import 'fonts';
 /**
 * Modal
 */
@@ -36,13 +37,14 @@
 	width: 40%;
 }
 
-#modalDialog {
+#modalDialog,
+#modalDialogYachts {
 	font-size: 1rem;
 	width: 60%;
 }
 
 #chooseYachts p {
-	font-family: 'Pinyon Script', cursive;
+	font-family: $cursiveFont;
 }
 
 #countdown .modal-content {
@@ -53,7 +55,7 @@
 #countdown .modal-body {
 	font-size: 300px;
 	color: white;
-	font-family: 'Pinyon Script', cursive;
+	font-family: $cursiveFont;
 }
 
 #modalTitle {
@@ -62,8 +64,11 @@
 	padding-top: 2%;
 }
 
-#modalContent {
+#modalContent,
+#modalContentYachts {
 	margin: 4%;
+	font-family: $cursiveFont;
+
 }
 
 .yachts-container {

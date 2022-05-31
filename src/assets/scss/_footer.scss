@@ -1,4 +1,9 @@
 @import 'colors';
+@import 'fonts';
+
+/**
+* Footer
+*/
 
 footer {
 	bottom: 0;
@@ -7,7 +12,7 @@ footer {
 	background-color: black;
 	padding: 1em;
 	color: white;
-	font-family: 'Pinyon Script', cursive;
+	font-family: $cursiveFont;
 	font-size: 0.8rem;
 
 	display: flex;

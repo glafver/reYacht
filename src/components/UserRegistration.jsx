@@ -63,8 +63,8 @@ const UserRegistration = () => {
             }
 
 
-            <Modal className="d-flex align-items-center text-center" show={yachtChoice}>
-                <Modal.Body >
+            <Modal  id="modalDialogYachts" className="d-flex align-items-center text-center" show={yachtChoice}>
+                <Modal.Body id="modalContentYachts">
                     <p>Do you want to place yachts yourself or get them randomly?</p>
 
                     <div className='d-flex justify-content-between'>
