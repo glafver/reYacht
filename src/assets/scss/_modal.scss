@@ -11,7 +11,7 @@
 #modalManuallyChoose {
 	max-height: 100vh;
 	max-width: 90%;
-	/* width: 90%; */
+	width: 90%;
 	display: flex;
 	align-items: center;
 }
@@ -58,7 +58,12 @@
 	font-family: $cursiveFont;
 }
 
+#modalHeader {
+	width: 90%;
+}
+
 #modalTitle {
+	font-family: $cursiveFont;
 	text-align: center;
 	padding-left: 4%;
 	padding-top: 2%;
@@ -67,8 +72,11 @@
 #modalContent,
 #modalContentYachts {
 	margin: 4%;
-	font-family: $cursiveFont;
+	font-family: $standardFont;
+}
 
+#modalContent p{
+	font-size: 0.8rem;
 }
 
 .yachts-container {
