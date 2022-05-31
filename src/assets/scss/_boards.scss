@@ -28,6 +28,7 @@
 
 .board .board_cell:nth-child(3n) {
 	background-color: $oceanblue;
+	z-index: 10000;
 }
 
 .board_cell {
