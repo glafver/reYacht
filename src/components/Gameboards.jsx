@@ -21,11 +21,11 @@ const Gameboards = () => {
 				setMove(false)
 
 				document.getElementById('enemyfield_' + point.row + point.col).classList.add('board_miss', 'blocked')
-				set_results_Message('You missed! Wait and try again!')
+				set_results_Message("You missed! Wait for your enemy's move and then try again!")
 			} else {
 				setMove(true)
 				document.getElementById('myfield_' + point.row + point.col).classList.add('board_my_yacht_miss')
-				set_results_Message('Your opponent missed! Your turn now!')
+				set_results_Message('Your opponent missed! Your turn to shoot!')
 			}
 		}
 		socket.on('shot:miss', handleMiss)
@@ -42,7 +42,7 @@ const Gameboards = () => {
 					for (let point of killed_yacht.points) {
 						document.getElementById('enemyfield_' + point.row + point.col).classList.add('board_killed', 'blocked')
 					}
-					set_results_Message('Great! You killed one of the ships! Wait and try again!')
+					set_results_Message("Great! You've hit a whole ship! Wait for your enemy's move and then continue to shoot!")
 				} else {
 					set_results_Message('Good job! You shot one of the ships! Try more on the next turn! Wait and try again!')
 				}
@@ -101,10 +101,10 @@ const Gameboards = () => {
 	return (
 		<>
 			<Results />
-			<div className="all-boards container">
+			<div className="all-boards">
 
 				<div className="board-container text-center">
-					<h1>{userName}</h1>
+					<h2>You: {userName}</h2>
 					<div className="board player-grid m-auto" >
 
 						{yachts &&
@@ -116,7 +116,7 @@ const Gameboards = () => {
 					</div>
 				</div>
 				<div className="board-container text-center">
-					<h1>{opponentName}</h1>
+					<h2>Enemy: {opponentName}</h2>
 
 					<div className="board enemy-grid m-auto" style={{ cursor: move === true ? "pointer" : "not-allowed" }} >
 

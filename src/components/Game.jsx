@@ -19,7 +19,7 @@ const Game = () => {
 			if (move) {
 				set_results_Message("You shoot first! Try to hit one of the enemy's yachts!")
 			} else {
-				set_results_Message("You wait for your turn. Your enemy is shooting first.")
+				set_results_Message("Wait for your turn. Your enemy is shooting first.")
 			}
 
 			// showing a modal with countdown

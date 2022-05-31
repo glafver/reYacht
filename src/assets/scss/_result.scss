@@ -1,4 +1,5 @@
 @import 'colors';
+@import 'fonts';
 
 /**
 * Result
@@ -8,7 +9,8 @@
 	width: 100%;
 	height: 15vh;
 	border: solid 1px $gold;
-	margin: 4% auto;
+	border-radius: 20px;
+	margin: 2rem auto;
 
 	padding: 2%;
 
@@ -22,4 +24,7 @@
 .result-container p {
 	color: black;
 	margin-bottom: 0;
+	font-family: $standardFont;
+	font-size: 1rem;
+	font-weight: 400;
 }
