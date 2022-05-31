@@ -3,6 +3,7 @@
 footer {
 	bottom: 0;
 	height: 6vh;
+	width: 100%;
 	background-color: black;
 	padding: 1em;
 	color: white;
@@ -12,7 +13,7 @@ footer {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	position: sticky;
+	position: fixed;
 }
 
 footer p {
