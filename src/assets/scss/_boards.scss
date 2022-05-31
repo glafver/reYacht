@@ -26,7 +26,7 @@
 	gap: 1px;
 }
 
-.board_cell:nth-child(3n) {
+.board .board_cell:nth-child(3n) {
 	background-color: $oceanblue;
 }
 
@@ -44,11 +44,10 @@
 
 .board_yacht {
 	background-color: $gold !important;
-	z-index: 999;
 }
 
 .board_hit {
-	background-color: $hit;
+	background-color: $hit !important;
 	cursor: not-allowed;
 }
 
@@ -60,12 +59,12 @@
 }
 
 .board_killed {
-	background-color: $killed;
+	background-color: $killed !important;
 	cursor: not-allowed;
 }
 
 .board_my_yacht_hit {
-	background-color: $light_hit;
+	background-color: $light_hit !important;
 }
 
 .board_my_yacht_miss {
