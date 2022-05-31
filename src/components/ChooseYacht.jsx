@@ -228,7 +228,7 @@ const ChooseYacht = () => {
 						</div>
 					</div>
 				</div>
-                <div className="board m-auto mx-auto mb-3" >
+                <div className="board m-auto mx-auto mb-3" id="boardPlace">
 
                     {
                         [...Array(100).keys()].map((div) =>

@@ -18,7 +18,7 @@ const CountdownTimer = () => {
         <Modal show={countdown} className='d-flex align-items-center text-center' id="countdown">
             <Modal.Body >
                 <p className='display-3'>Game will start in</p>
-                <p>{counter}</p>
+                <p id="countdownNumber">{counter}</p>
             </Modal.Body>
         </Modal>
     )

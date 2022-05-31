@@ -65,11 +65,11 @@ const UserRegistration = () => {
 
             <Modal  id="modalDialogYachts" className="d-flex align-items-center text-center" show={yachtChoice}>
                 <Modal.Body id="modalContentYachts">
-                    <p>Do you want to place yachts yourself or get them randomly?</p>
+                    <h2>Do you want to place yachts yourself or get them randomly?</h2>
 
                     <div className='d-flex justify-content-between'>
-                        <button className='button btn-gold' onClick={handleManualChoice}>Choose yachts manually</button>
-                        <button className='button btn-gold' onClick={handleRandomChoice}>Get yachts randomly</button>
+                        <button className='button btn-gold' onClick={handleManualChoice}>I'll place them myself</button>
+                        <button className='button btn-gold' onClick={handleRandomChoice}>Place them randomly for me</button>
                     </div>
                 </Modal.Body>
             </Modal>
