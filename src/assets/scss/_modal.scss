@@ -10,8 +10,8 @@
 
 #modalManuallyChoose {
 	max-height: 100vh;
-	max-width: 90%;
-	width: 90%;
+	max-width: 100%;
+	width: 100%;
 	display: flex;
 	align-items: center;
 }
@@ -40,12 +40,20 @@
 #modalDialog,
 #modalDialogYachts {
 	font-size: 1rem;
-	width: 60%;
+	width: 95%;
 }
 
 #chooseYachts p {
 	font-family: $cursiveFont;
 }
+
+.btnPlaceYachts {
+	display: flex;
+	justify-content: space-between;
+	
+}
+
+
 
 #modalHeader {
 	width: 90%;
@@ -143,4 +151,21 @@
 	background-size: auto;
 	background-repeat: no-repeat;
 
+}
+
+@media screen and (min-width: 600px) {
+	#modalManuallyChoose {
+		max-width: 90%;
+		width: 90%;
+	}
+
+	#modalDialog,
+	#modalDialogYachts {
+		font-size: 1rem;
+		width: 60%;
+	}
+}
+
+@media screen and (min-width: 1440px) {
+	
 }

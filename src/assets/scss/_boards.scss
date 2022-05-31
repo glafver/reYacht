@@ -26,10 +26,14 @@
 	gap: 1px;
 }
 
+.board_cell:nth-child(3n) {
+	background-color: $oceanblue;
+}
+
 .board_cell {
 	background-color: $lightOceanBlue;
 	cursor: pointer;
-
+	
 	width: 100%;
 	aspect-ratio: 1 / 1;
 }
@@ -39,7 +43,8 @@
 }
 
 .board_yacht {
-	background-color: $gold;
+	background-color: $gold !important;
+	z-index: 999;
 }
 
 .board_hit {

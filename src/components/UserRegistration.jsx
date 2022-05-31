@@ -67,9 +67,9 @@ const UserRegistration = () => {
                 <Modal.Body id="modalContentYachts">
                     <h2>Do you want to place yachts yourself or get them randomly?</h2>
 
-                    <div className='d-flex justify-content-between'>
-                        <button className='button btn-gold' onClick={handleManualChoice}>I'll place them myself</button>
-                        <button className='button btn-gold' onClick={handleRandomChoice}>Place them randomly for me</button>
+                    <div className="btnPlaceYachts">
+                        <button className="button btn-gold" onClick={handleManualChoice}>I'll place them myself</button>
+                        <button className="button btn-gold" onClick={handleRandomChoice}>Place them randomly for me</button>
                     </div>
                 </Modal.Body>
             </Modal>
