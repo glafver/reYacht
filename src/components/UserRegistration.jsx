@@ -63,7 +63,7 @@ const UserRegistration = () => {
             }
 
 
-            <Modal  id="modalDialogYachts" className="d-flex align-items-center text-center" show={yachtChoice}>
+            <Modal id="modalDialogYachts" show={yachtChoice}>
                 <Modal.Body id="modalContentYachts">
                     <h2>Do you want to place yachts yourself or get them randomly?</h2>
 

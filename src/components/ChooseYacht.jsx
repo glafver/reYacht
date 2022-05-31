@@ -203,7 +203,7 @@ const ChooseYacht = () => {
     }
 
     return (
-        <Modal className="d-flex align-items-center text-center" id="modalManuallyChoose" show={manualChoice}>
+        <Modal id="modalManuallyChoose" show={manualChoice}>
             <Modal.Body id="manuallyChoose">
 				<div id="chooseYachts">
 					<p id="chooseYachtMsg">{message}</p>
@@ -228,17 +228,17 @@ const ChooseYacht = () => {
 						</div>
 					</div>
 				</div>
-                <div className="board m-auto mx-auto mb-3" id="boardPlace">
+                <div className="board m-auto mx-auto mb-3" id="boardPlaceYachts">
 
                     {
                         [...Array(100).keys()].map((div) =>
-                            <div key={div} className="board_cell" id={div < 10 ? '0' + div : div} style={{ cursor: 'not-allowed' }} onDragEnter={onDragEnter} onDragLeave={onDragLeave} onDragOver={allowDrop} onDrop={setYacht} ></div>
+                            <div key={div} className="board_cell" id={div < 10 ? '0' + div : div} style={{ cursor: "not-allowed" }} onDragEnter={onDragEnter} onDragLeave={onDragLeave} onDragOver={allowDrop} onDrop={setYacht} ></div>
                         )
                     }
 
                 </div>
                 <div>
-                    <button className='button btn-gold' onClick={handleSubmit} disabled={yachtsLength.length > 0}>Submit the choice</button>
+                    <button className="button btn-gold" onClick={handleSubmit} disabled={yachtsLength.length > 0}>Submit the choice</button>
                 </div>
             </Modal.Body>
         </Modal>

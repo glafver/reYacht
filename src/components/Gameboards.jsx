@@ -102,7 +102,6 @@ const Gameboards = () => {
 		<>
 			<Results />
 			<div className="all-boards">
-
 				<div className="board-container text-center">
 					<h2>You: {userName}</h2>
 					<div className="board player-grid m-auto" >
