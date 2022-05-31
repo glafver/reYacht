@@ -6,7 +6,7 @@ const Results = () => {
 	return (
 		<div className="result-container">
 
-			<p>{results_message}</p>
+			<p className='m-0'>{results_message}</p>
 
 		</div>
 	)
