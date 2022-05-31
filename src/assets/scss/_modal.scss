@@ -42,7 +42,8 @@
 	background-color: $killed;
 	background-image: url(../images/miss.png);
 	background-size: cover;
-	cursor: not-allowed;
+	// cursor: not-allowed;
+	cursor: pointer;
 }
 
 .yacht-neighbour-blocked {
