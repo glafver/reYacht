@@ -25,11 +25,11 @@
 
 #chatContainer .my-msg {
 	display: flex;
-	justify-content: end;
+	justify-content: flex-end;
 	text-align: right;
 }
 
 #chatContainer .enemy-msg {
 	display: flex;
-	justify-content: start;
+	justify-content: flex-start;
 }

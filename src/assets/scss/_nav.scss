@@ -26,11 +26,15 @@
 
 }
 
+.navbar a:hover {
+	color: $gold;
+}
+
 .navbar a h1 {
 	margin-bottom: 0;
 }
 
-@media screen and (min-width: 834px) {
+@media screen and (min-width: 600px) {
 	.navbar {
 		height: 10vh;
 		padding: 0.8rem;
