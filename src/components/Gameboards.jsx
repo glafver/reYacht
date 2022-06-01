@@ -5,7 +5,7 @@ import Results from './Results'
 import GameRestart from './GameRestart'
 
 const Gameboards = () => {
-	const { userName, opponentName, yachts, shootTarget, move, gameRestart, setMove, setShootTarget, set_results_Message, setGameRestart, socket } = useGameContext()
+	const { userName, opponentName, yachts, shootTarget, move, gameRestart, setMove, setShootTarget, set_results_Message, setGameRestart, setYachts, socket } = useGameContext()
 
 	const update = (e) => {
 		e.preventDefault()
@@ -99,6 +99,51 @@ const Gameboards = () => {
 		}
 
 	}, [yachts])
+
+	useEffect(() => {
+	socket.on('recalibrating:yachts', (userYachtsHp, killedYachts) => {
+		// Removing the class of board_yacht(light-orange color) for every yacht square
+		for (let yacht of yachts) {
+			for (let point of yacht.points) {
+				let cell = document.getElementById('myfield_' + point.row + point.col)
+				cell.classList.remove('board_yacht')
+			}
+		}
+
+		// Removing the class of board_my_yacht_hit(warm-orange) for every hit yacht square
+		for (let hp of userYachtsHp) {
+			document.getElementById('myfield_' + hp.row + hp.col).classList.remove('board_my_yacht_hit')
+		}
+
+		// Removing the class of board_my_yacht_killed(red) for every hit point of every killed ship
+		killedYachts.map((yacht) => {
+			yacht.points.map((point) => {
+				document.getElementById('myfield_' + point.row + point.col).classList.remove('board_my_yacht_killed')
+			})
+		})
+
+		// Works for removing yacht logic from squares by emptying the yachts context (array)
+		// console.log(yachts)
+		// yachts.splice(0,4)
+		// console.log(yachts)
+		// setYachts(newYachts)
+		// console.log(yachts)
+		
+	})
+
+    socket.on('rematch:agreed', (newYachts) => {
+		console.log('hi')
+        setGameRestart(false)
+        //     setYachts()
+        //     setCountdown(true)
+        //     const [waiting, setWaiting] = useState()
+        //     const [move, setMove] = useState()
+        //     const [shootTarget, setShootTarget] = useState()
+        //     const [results_message, set_results_Message] = useState()
+        //     const [manualChoice, setManualChoice] = useState(false)
+        //     const [gameRestart, setGameRestart] = useState(true)
+    })
+	}, [socket])
 
 	return (
 		<>
