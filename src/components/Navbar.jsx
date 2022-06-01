@@ -15,7 +15,7 @@ const Navbar = () => {
             <nav className="navbar">
                 <div className="game-container nav-container">
                     <Link className="logo navbar-brand" to={'/'}>
-                        <h1 class="logoText">Battle of the Yachts</h1>
+                        <h1 className="logoText">Battle of the Yachts</h1>
                     </Link>
                     <button className="button btn-gold" onClick={handleShow}>
                         Game instructions

@@ -16,7 +16,8 @@ body {
 	margin: 0;
 }
 
-h1, h2 {
+h1,
+h2 {
 	font-family: $cursiveFont;
 	font-size: 0.9rem;
 }
@@ -54,4 +55,12 @@ img {
 	&:hover {
 		background-color: scale-color($gold, $lightness: 10%);
 	}
+}
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.cursor-not-allowed {
+	cursor: not-allowed;
 }

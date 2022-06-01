@@ -35,7 +35,7 @@
 	font-size: 1rem;
 	text-align: center;
 }
-	
+
 #inputChatMsg::placeholder {
 	color: #ae9b8946;
 }
@@ -71,6 +71,25 @@
 
 #chatContainer .enemy-msg {
 	display: flex;
+	justify-content: start;
+}
+
+// styling for scrollbar in chat
+
+::-webkit-scrollbar {
+	width: 5px;
+}
+
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+	background: lightgray;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: gray;
 	justify-content: flex-start;
 	border: none;
 }
@@ -100,4 +119,8 @@
 .my-msg .chat-msg {
 	border-radius: 20px 0 20px 20px;
 	background-color: $lightOceanBlue;
+}
+
+.enemy-msg {
+	border: none;
 }
