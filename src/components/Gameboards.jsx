@@ -101,47 +101,26 @@ const Gameboards = () => {
 	}, [yachts])
 
 	useEffect(() => {
+	// Listener for when the server tells us it's time to recalibrate the users yachts (voted for rematching the other user)
 	socket.on('recalibrating:yachts', (userYachtsHp, killedYachts) => {
-		// Removing the class of board_yacht(light-orange color) for every yacht square
-		for (let yacht of yachts) {
-			for (let point of yacht.points) {
-				let cell = document.getElementById('myfield_' + point.row + point.col)
-				cell.classList.remove('board_yacht')
-			}
+		// Getting all player cells so they are iterable
+		let cells = document.getElementsByClassName('player-cell')
+
+		// Looping over player cells and removing classes for when a yacht is present, hit, missed and killed
+		for (let cell of cells) {
+			cell.classList.remove('board_yacht', 'board_my_yacht_hit', 'board_my_yacht_killed', 'board_my_yacht_miss')
 		}
+		// Works for removing all yachts from yachts array state
+		yachts.splice(0,4)
 
-		// Removing the class of board_my_yacht_hit(warm-orange) for every hit yacht square
-		for (let hp of userYachtsHp) {
-			document.getElementById('myfield_' + hp.row + hp.col).classList.remove('board_my_yacht_hit')
-		}
-
-		// Removing the class of board_my_yacht_killed(red) for every hit point of every killed ship
-		killedYachts.map((yacht) => {
-			yacht.points.map((point) => {
-				document.getElementById('myfield_' + point.row + point.col).classList.remove('board_my_yacht_killed')
-			})
-		})
-
-		// Works for removing yacht logic from squares by emptying the yachts context (array)
-		// console.log(yachts)
-		// yachts.splice(0,4)
-		// console.log(yachts)
-		// setYachts(newYachts)
-		// console.log(yachts)
-		
 	})
 
+	// Listener for when both players have agreed to rematch eachother
     socket.on('rematch:agreed', (newYachts) => {
 		console.log('hi')
         setGameRestart(false)
-        //     setYachts()
-        //     setCountdown(true)
-        //     const [waiting, setWaiting] = useState()
-        //     const [move, setMove] = useState()
-        //     const [shootTarget, setShootTarget] = useState()
-        //     const [results_message, set_results_Message] = useState()
-        //     const [manualChoice, setManualChoice] = useState(false)
-        //     const [gameRestart, setGameRestart] = useState(true)
+			// Inserting the new yachts into the yachts array state
+            setYachts(newYachts)
     })
 	}, [socket])
 
@@ -157,7 +136,7 @@ const Gameboards = () => {
 
 						{yachts &&
 							[...Array(100).keys()].map((div) =>
-								<div key={div} className="board_cell" id={div < 10 ? 'myfield_0' + div : 'myfield_' + div} style={{ cursor: "not-allowed" }}></div>
+								<div key={div} className="board_cell player-cell" id={div < 10 ? 'myfield_0' + div : 'myfield_' + div} style={{ cursor: "not-allowed" }}></div>
 							)
 						}
 
