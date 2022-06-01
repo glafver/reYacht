@@ -18,6 +18,7 @@ const GameContextProvider = ({ children }) => {
     const [shootTarget, setShootTarget] = useState()
     const [results_message, set_results_Message] = useState()
     const [manualChoice, setManualChoice] = useState(false)
+	const [illustration, setIllustration] = useState('')
 
     const values = {
         userName,
@@ -38,7 +39,9 @@ const GameContextProvider = ({ children }) => {
         set_results_Message,
         manualChoice,
         setManualChoice,
-        socket
+        socket,
+		illustration,
+		setIllustration
     }
 
     return (

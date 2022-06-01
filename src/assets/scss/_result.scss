@@ -7,7 +7,7 @@
 
 .result-container {
 	width: 100%;
-	height: 15vh;
+	height: 25vh;
 	border: solid 1px $gold;
 	border-radius: 20px;
 	margin: 2rem auto;
@@ -27,4 +27,10 @@
 	font-family: $standardFont;
 	font-size: 1rem;
 	font-weight: 400;
+}
+
+.seagull {
+	width: auto;
+	height: 20vh;
+	padding-bottom: 0;
 }
