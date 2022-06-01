@@ -9,7 +9,7 @@ const ChatRoom = () => {
     const messageRef = useRef()
 
 
-	let chatbox = document.querySelector(".chat-container")
+    let chatbox = document.querySelector(".chat-container")
 
     const handleIncomingMessage = msg => {
         setMessages(prevMessages => [...prevMessages, msg])
@@ -34,7 +34,7 @@ const ChatRoom = () => {
 
         setMessage('')
         messageRef.current.focus()
-		chatbox.scrollIntoView({block: "end"})
+        chatbox.scrollIntoView({ block: "end" })
 
     }
 
@@ -48,37 +48,37 @@ const ChatRoom = () => {
 
     return (
         <div className="chat-container">
-			<h2 id="chatTitle">Talk to the enemy</h2>
-			<Form className="chat-input-form" onSubmit={handleSubmit}>
-				<InputGroup className="input-form-holder">
-					<Form.Control
-						id="inputChatMsg"
-						onChange={e => setMessage(e.target.value)}
-						placeholder="Write your message here"
-						ref={messageRef}
-						required
-						type="text"
-						value={message}
-					/>
-					<button class="button btn-gold" id="chat-btn" type="submit" disabled={!message.length}>Send</button>
-				</InputGroup>
-			</Form>
+            <h2 id="chatTitle">Talk to the enemy</h2>
+            <Form className="chat-input-form" onSubmit={handleSubmit}>
+                <InputGroup className="input-form-holder">
+                    <Form.Control
+                        id="inputChatMsg"
+                        onChange={e => setMessage(e.target.value)}
+                        placeholder="Write your message here"
+                        ref={messageRef}
+                        required
+                        type="text"
+                        value={message}
+                    />
+                    <button className="button btn-gold" id="chat-btn" type="submit" disabled={!message.length}>Send</button>
+                </InputGroup>
+            </Form>
 
-			<div>
-				<ListGroup className="chatMsg-container" id="chatContainer">
-					{messages.map((message, index) => {
-						return (
-							<ListGroup.Item key={index} className={message.username === userName ? "my-msg" : "enemy-msg"}>
-								<span className="msg-holder">
-									<p className="chat-username">{message.username}</p>
-									<div className="chat-msg">{message.content}</div>
-								</span>
-							</ListGroup.Item>
-						)
-					}
-					).reverse()}
-				</ListGroup>
-			</div>
+            <div>
+                <ListGroup className="chatMsg-container" id="chatContainer">
+                    {messages.map((message, index) => {
+                        return (
+                            <ListGroup.Item key={index} className={message.username === userName ? "my-msg" : "enemy-msg"}>
+                                <span className="msg-holder">
+                                    <p className="chat-username">{message.username}</p>
+                                    <div className="chat-msg">{message.content}</div>
+                                </span>
+                            </ListGroup.Item>
+                        )
+                    }
+                    ).reverse()}
+                </ListGroup>
+            </div>
         </div>
     )
 }
