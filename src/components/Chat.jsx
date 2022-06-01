@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
-import { Button, Form, InputGroup, ListGroup } from 'react-bootstrap'
+import { Form, InputGroup, ListGroup } from 'react-bootstrap'
 import { useGameContext } from '../contexts/UserContext'
 
 const ChatRoom = () => {
@@ -25,7 +25,6 @@ const ChatRoom = () => {
         const msg = {
             username: userName,
             content: message,
-            // timestamp: Date.now(),
         }
 
         socket.emit('chat:message', msg)
@@ -47,40 +46,37 @@ const ChatRoom = () => {
 
 
     return (
-        <div className='my-5'>
+        <div className="chat-container">
+            <h2 id="chatTitle">Talk to the enemy</h2>
+            <Form className="chat-input-form" onSubmit={handleSubmit}>
+                <InputGroup className="input-form-holder">
+                    <Form.Control
+                        id="inputChatMsg"
+                        onChange={e => setMessage(e.target.value)}
+                        placeholder="Write your message here"
+                        ref={messageRef}
+                        required
+                        type="text"
+                        value={message}
+                    />
+                    <button className="button btn-gold" id="chat-btn" type="submit" disabled={!message.length}>Send</button>
+                </InputGroup>
+            </Form>
+
             <div>
-                <h2>Chat</h2>
-
-                <Form className="chat-input-form" onSubmit={handleSubmit}>
-                    <InputGroup className="input-form-holder">
-                        <Form.Control
-                            onChange={e => setMessage(e.target.value)}
-                            placeholder="Write something to your enemy"
-                            ref={messageRef}
-                            required
-                            type="text"
-                            value={message}
-                        />
-                        <Button variant="success" type="submit" disabled={!message.length}>Send</Button>
-                    </InputGroup>
-                </Form>
-
-                <div>
-                    <ListGroup className="chat-container" id="chatContainer">
-                        {messages.map((message, index) => {
-
-                            return (
-
-                                <ListGroup.Item key={index} className={message.username === userName ? "my-msg" : "enemy-msg"}>
-                                    <span className='chat-type'><b> {message.username}:&#160;&#160; </b> </span>
-                                    <span className='chat-type font-weight-light'> {message.content}</span>
-                                </ListGroup.Item>
-
-                            )
-                        }
-                        ).reverse()}
-                    </ListGroup>
-                </div>
+                <ListGroup className="chatMsg-container" id="chatContainer">
+                    {messages.map((message, index) => {
+                        return (
+                            <ListGroup.Item key={index} className={message.username === userName ? "my-msg" : "enemy-msg"}>
+                                <span className="msg-holder">
+                                    <p className="chat-username">{message.username}</p>
+                                    <div className="chat-msg">{message.content}</div>
+                                </span>
+                            </ListGroup.Item>
+                        )
+                    }
+                    ).reverse()}
+                </ListGroup>
             </div>
         </div>
     )

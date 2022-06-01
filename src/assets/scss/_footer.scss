@@ -1,19 +1,33 @@
 @import 'colors';
+@import 'fonts';
+
+/**
+* Footer
+*/
 
 footer {
 	bottom: 0;
-	height: 10vh;
+	height: 6vh;
+	width: 100%;
 	background-color: black;
 	padding: 1em;
 	color: white;
-	font-family: 'Pinyon Script', cursive;
+	font-family: $cursiveFont;
 	font-size: 0.8rem;
 
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	position: fixed;
 }
 
 footer p {
 	margin: 0;
+	font-size: 1rem;
+}
+
+@media screen and (min-width: 1440px) {
+	footer {
+		height: 5vh;
+	}
 }

@@ -247,32 +247,32 @@ const ChooseYacht = () => {
     }
 
     return (
-        <Modal className='d-flex align-items-center text-center ' show={manualChoice}>
-            <Modal.Body >
-                <p>{message}</p>
+        <Modal id="modalManuallyChoose" show={manualChoice}>
+            <Modal.Body id="manuallyChoose">
+                <div id="chooseYachts">
+                    <p id="chooseYachtMsg">{message}</p>
 
-                <div className="yachts-container mx-auto mb-3" onClick={resetYachts}>
-                    <div id="vertical_4" style={{ gridArea: "2 / 2 / span 4 / span 1", cursor: "pointer" }} draggable onDragStart={getYacht} className={yachtsLength.includes(4) ? 'vertical_4 active' : 'd-none'}>
+                    <div className="yachts-container mx-auto mb-3" onClick={resetYachts}>
+                        <div id="vertical_4" style={{ gridArea: "2 / 2 / span 4 / span 1", cursor: "pointer" }} draggable onDragStart={getYacht} className={yachtsLength.includes(4) ? 'vertical_4 active' : 'd-none'}>
+                        </div>
+
+                        <div id="vertical_3" style={{ gridArea: "2 / 4 / span 3 / span 1", cursor: "pointer" }} draggable onDragStart={getYacht} className={yachtsLength.includes(3) ? 'vertical_3 active' : 'd-none'}>
+                        </div>
+
+                        <div id="vertical_2" style={{ gridArea: "2 / 6 / span 2 / span 1", cursor: "pointer" }} draggable onDragStart={getYacht} className={yachtsLength.includes(2) ? 'vertical_2 active' : 'd-none'}>
+                        </div>
+
+                        <div id="horizontal_4" style={{ gridArea: "2 / 8 / span 1 / span 4", cursor: "pointer" }} draggable onDragStart={getYacht} className={yachtsLength.includes(4) ? 'horizontal_4 active' : 'd-none'}>
+                        </div>
+
+                        <div id="horizontal_3" style={{ gridArea: "4 / 8 / span 1 / span 3", cursor: "pointer" }} draggable onDragStart={getYacht} className={yachtsLength.includes(3) ? 'horizontal_3 active' : 'd-none'}>
+                        </div>
+
+                        <div id="horizontal_2" style={{ gridArea: "6 / 8 / span 1 / span 2", cursor: "pointer" }} draggable onDragStart={getYacht} className={yachtsLength.includes(2) ? 'horizontal_2 active' : 'd-none'}>
+                        </div>
                     </div>
-
-                    <div id="vertical_3" style={{ gridArea: "2 / 4 / span 3 / span 1", cursor: "pointer" }} draggable onDragStart={getYacht} className={yachtsLength.includes(3) ? 'vertical_3 active' : 'd-none'}>
-                    </div>
-
-                    <div id="vertical_2" style={{ gridArea: "2 / 6 / span 2 / span 1", cursor: "pointer" }} draggable onDragStart={getYacht} className={yachtsLength.includes(2) ? 'vertical_2 active' : 'd-none'}>
-                    </div>
-
-                    <div id="horizontal_4" style={{ gridArea: "2 / 10 / span 1 / span 4", cursor: "pointer" }} draggable onDragStart={getYacht} className={yachtsLength.includes(4) ? 'horizontal_4 active' : 'd-none'}>
-                    </div>
-
-                    <div id="horizontal_3" style={{ gridArea: "4 / 10 / span 1 / span 3", cursor: "pointer" }} draggable onDragStart={getYacht} className={yachtsLength.includes(3) ? 'horizontal_3 active' : 'd-none'}>
-                    </div>
-
-                    <div id="horizontal_2" style={{ gridArea: "6 / 10 / span 1 / span 2", cursor: "pointer" }} draggable onDragStart={getYacht} className={yachtsLength.includes(2) ? 'horizontal_2 active' : 'd-none'}>
-                    </div>
-
                 </div>
-
-                <div className="board m-auto mx-auto mb-3" >
+                <div className="board m-auto mx-auto mb-3" id="boardPlaceYachts">
 
                     {
                         [...Array(100).keys()].map((div) =>
@@ -282,7 +282,7 @@ const ChooseYacht = () => {
 
                 </div>
                 <div>
-                    <button className='button btn-gold' onClick={handleSubmit} disabled={yachtsLength.length > 0}>Submit the choice</button>
+                    <button className="button btn-gold" onClick={handleSubmit} disabled={yachtsLength.length > 0}>Submit the choice</button>
                 </div>
             </Modal.Body>
         </Modal>
