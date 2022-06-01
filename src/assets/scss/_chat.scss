@@ -72,6 +72,7 @@
 #chatContainer .enemy-msg {
 	display: flex;
 	justify-content: start;
+	border: none;
 }
 
 // styling for scrollbar in chat
@@ -119,8 +120,4 @@
 .my-msg .chat-msg {
 	border-radius: 20px 0 20px 20px;
 	background-color: $lightOceanBlue;
-}
-
-.enemy-msg {
-	border: none;
 }

@@ -51,10 +51,8 @@
 .btnPlaceYachts {
 	display: flex;
 	justify-content: space-between;
-	
+
 }
-
-
 
 #modalHeader {
 	width: 90%;
@@ -85,7 +83,7 @@
 	grid-template-columns: repeat(12, 1fr);
 
 	aspect-ratio: 2 / 1;
-	
+
 	gap: 1px;
 	margin: 1rem;
 }
@@ -94,7 +92,6 @@
 	background-color: $killed;
 	background-image: url(../images/miss.png);
 	background-size: cover;
-	// cursor: not-allowed;
 	cursor: pointer;
 }
 
@@ -104,12 +101,7 @@
 	cursor: not-allowed;
 }
 
-// .active {
-// 	background-color: $killed;
-// }
-
 .inactive {
-	// background-color: $light_killed;
 	opacity: 50%;
 }
 

@@ -33,13 +33,14 @@
 .board_cell {
 	background-color: $lightOceanBlue;
 	cursor: pointer;
-	
+
 	width: 100%;
 	aspect-ratio: 1 / 1;
 }
 
 .hover_cell {
 	opacity: 0.3;
+	border: 3px solid black;
 }
 
 .board_yacht {
@@ -52,7 +53,6 @@
 }
 
 .board_miss {
-	// background-color: $miss;
 	background-image: url(../images/miss.png);
 	background-size: cover;
 	cursor: not-allowed;
@@ -68,7 +68,6 @@
 }
 
 .board_my_yacht_miss {
-	// background-color: $light_miss;
 	background-image: url(../images/miss.png);
 	background-size: cover;
 }
@@ -87,6 +86,4 @@
 	}
 }
 
-@media screen and (min-width: 1440px) {
-	
-}
+@media screen and (min-width: 1440px) {}

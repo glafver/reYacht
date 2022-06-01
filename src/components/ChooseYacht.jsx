@@ -231,6 +231,9 @@ const ChooseYacht = () => {
                 for (let point of yacht.blocked_points) {
                     document.getElementById(`${point.row}${point.col}`).classList.add('blocked', 'yacht-neighbour-blocked')
                 }
+                for (let point of yacht.points) {
+                    document.getElementById(`${point.row}${point.col}`).classList.remove('yacht-neighbour-blocked')
+                }
             }
 
             setTempYachts(new_yachts)
