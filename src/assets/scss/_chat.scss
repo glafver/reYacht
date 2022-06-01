@@ -61,12 +61,6 @@
 	word-wrap: break-word;
 }
 
-.chat-type {
-	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-	font-weight: normal;
-	font-size: 1rem;
-}
-
 #chatContainer .my-msg {
 	display: flex;
 	justify-content: flex-end;
@@ -80,25 +74,25 @@
 	justify-content: start;
 }
 
+// styling for scrollbar in chat
 
-// styling for scrollbar i chatten
-// ::-webkit-scrollbar {
-// 	width: 5px;
-// }
+::-webkit-scrollbar {
+	width: 5px;
+}
 
-// ::-webkit-scrollbar-track {
-// 	background: #f1f1f1;
-// }
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
 
-// ::-webkit-scrollbar-thumb {
-// 	background: lightgray;
-// }
+::-webkit-scrollbar-thumb {
+	background: lightgray;
+}
 
-// ::-webkit-scrollbar-thumb:hover {
-// 	background: gray;
-// 	justify-content: flex-start;
-// 	border: none;
-// }
+::-webkit-scrollbar-thumb:hover {
+	background: gray;
+	justify-content: flex-start;
+	border: none;
+}
 
 .msg-holder {
 	max-width: 50%;
@@ -120,10 +114,13 @@
 .enemy-msg .chat-msg {
 	border-radius: 0 20px 20px 20px;
 	background-color: $oceanblue;
-
 }
 
 .my-msg .chat-msg {
 	border-radius: 20px 0 20px 20px;
 	background-color: $lightOceanBlue;
+}
+
+.enemy-msg {
+	border: none;
 }
