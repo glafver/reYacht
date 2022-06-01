@@ -52,8 +52,8 @@
 }
 
 .board_miss {
-	// background-color: $miss;
-	background-image: url(../images/miss.png);
+	background-color: $oceanblue;
+	background-image: url(../images/miss3.png);
 	background-size: cover;
 	cursor: not-allowed;
 }
@@ -68,9 +68,20 @@
 }
 
 .board_my_yacht_miss {
-	// background-color: $light_miss;
-	background-image: url(../images/miss.png);
+	background-color: $oceanblue;
+	background-image: url(../images/miss3.png);
 	background-size: cover;
+/* 	animation: rotation 2s infinite linear;
+	background-color: none; */
+}
+
+@keyframes rotation {
+	from {
+	  transform: rotate(0deg);
+	}
+	to {
+	  transform: rotate(-359deg);
+	}
 }
 
 .board_my_yacht_killed {
