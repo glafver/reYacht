@@ -37,24 +37,26 @@
 	width: 85%;
 }
 
-#modalDialog,
+#modalDialogInstructions,
+#modalDialogWaiting,
 #modalDialogYachts {
 	display: flex;
 	align-items: center;
 	text-align: center;
 
-	top: 20vh;
 	font-size: 1rem;
 	width: 95%;
+}
+
+#modalDialogWaiting,
+#modalDialogYachts {
+	top: 20vh;
 }
 
 .btnPlaceYachts {
 	display: flex;
 	justify-content: space-between;
-	
 }
-
-
 
 #modalHeader {
 	width: 90%;
@@ -166,7 +168,8 @@
 		width: 40%;
 	}
 
-	#modalDialog,
+	#modalDialogInstructions,
+	#modalDialogWaiting,
 	#modalDialogYachts {
 		width: 60%;
 	}
