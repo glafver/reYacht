@@ -5,7 +5,7 @@ import Results from './Results'
 import GameRestart from './GameRestart'
 
 const Gameboards = () => {
-	const { userName, opponentName, yachts, shootTarget, move, gameRestart, setMove, setShootTarget, set_results_Message, setGameRestart, setYachts, socket } = useGameContext()
+	const { userName, opponentName, yachts, shootTarget, move, setMove, setShootTarget, set_results_Message, setGameRestart, setYachts, socket } = useGameContext()
 
 	const update = (e) => {
 		e.preventDefault()
@@ -102,31 +102,46 @@ const Gameboards = () => {
 
 	useEffect(() => {
 	// Listener for when the server tells us it's time to recalibrate the users yachts (voted for rematching the other user)
-	socket.on('recalibrating:yachts', (userYachtsHp, killedYachts) => {
+	socket.on('recalibrating:yachts', (newYachts) => {
+		yachts.splice(0,4)
+		console.log(yachts)
+		setYachts(newYachts)
+		console.log(yachts)
+
 		// Getting all player cells so they are iterable
-		let cells = document.getElementsByClassName('player-cell')
+		let playerCells = document.getElementsByClassName('player-cell')
 
 		// Looping over player cells and removing classes for when a yacht is present, hit, missed and killed
-		for (let cell of cells) {
+		for (let cell of playerCells) {
 			cell.classList.remove('board_yacht', 'board_my_yacht_hit', 'board_my_yacht_killed', 'board_my_yacht_miss')
 		}
+
+		let opponentCells = document.getElementsByClassName('opponent-cell')
+
+		for (let cell of opponentCells) {
+			cell.classList.remove('board_yacht', 'board_hit', 'board_killed', 'board_miss', 'blocked')
+		}
+
 		// Works for removing all yachts from yachts array state
-		yachts.splice(0,4)
+		
+		// yachts.splice(0,4)
+
+		// console.log('new', yachts)
+		// setYachts(newYachts)
 
 	})
 
 	// Listener for when both players have agreed to rematch eachother
     socket.on('rematch:agreed', (newYachts) => {
+
 		console.log('hi')
         setGameRestart(false)
-			// Inserting the new yachts into the yachts array state
-            setYachts(newYachts)
+            
     })
 	}, [socket])
 
 	return (
 		<>
-			{gameRestart && <GameRestart/>}
 			<Results />
 			<div className='container d-flex justify-content-around'>
 
@@ -149,7 +164,7 @@ const Gameboards = () => {
 
 						{yachts &&
 							[...Array(100).keys()].map((div) =>
-								<div key={div} className="board_cell" id={div < 10 ? 'enemyfield_0' + div : 'enemyfield_' + div} onClick={update} style={{ cursor: move === true ? "pointer" : "not-allowed" }} ></div>
+								<div key={div} className="board_cell opponent-cell" id={div < 10 ? 'enemyfield_0' + div : 'enemyfield_' + div} onClick={update} style={{ cursor: move === true ? "pointer" : "not-allowed" }} ></div>
 							)
 						}
 

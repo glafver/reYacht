@@ -1,8 +1,30 @@
+.waiting-for-opponent-msg {
+    font-size: 15px;
+    padding: 10px;
+}
+
+.buttons-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 .new-opponent {
     border: none;
+    height: 100px;
+    width: 40%;
 }
 
 .rematch-button {
+    width: 40%;
+    height: 100px;
+    border: none;
+}
+
+.flicker-rematch-button {
+    height: 100px;
+    width: 150px;
     border: none;
     background-color: lightgray;
     animation: glowing 1500ms infinite;
