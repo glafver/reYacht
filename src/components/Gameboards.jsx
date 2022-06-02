@@ -123,7 +123,8 @@ const Gameboards = () => {
 			<Results />
 			<div className="all-boards">
 				<div className="board-container text-center">
-					<h2>You: {userName}</h2>
+					<h2 className="username-title">Your board</h2>
+					<p className="username-board">{userName}</p>
 					<div className="board player-grid m-auto" >
 
 						{yachts &&
@@ -135,7 +136,8 @@ const Gameboards = () => {
 					</div>
 				</div>
 				<div className="board-container text-center">
-					<h2>Enemy: {opponentName}</h2>
+					<h2 className="username-title">Enemy's board</h2>
+					<p className="username-board">{opponentName}</p>
 
 					<div className="board enemy-grid m-auto" style={{ cursor: move === true ? "pointer" : "not-allowed" }} >
 

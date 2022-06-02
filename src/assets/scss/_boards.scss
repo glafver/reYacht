@@ -1,8 +1,28 @@
 @import 'colors';
+@import 'fonts';
+
 
 /**
 * Boards
 */
+.board-container {
+	background-color: $oceanblue;
+	padding: 2%;
+	border-radius: 0.5em;
+}
+
+.username-title {
+	/* text-align: right; */
+	font-size: 0.5rem;
+	font-family: $standardFont;
+	color: $lightOceanBlue;
+}
+
+.username-board {
+	margin-bottom: 1rem;
+	color: $gold;
+	font-size: 1.5rem;
+}
 
 .boards {
 	display: flex;
