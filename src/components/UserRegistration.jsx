@@ -6,9 +6,8 @@ import ChooseYacht from './ChooseYacht'
 
 const UserRegistration = () => {
 
-    const { userName, setUserName, setYachts, setWaiting, setManualChoice, socket } = useGameContext()
+    const { userName, setUserName, setYachts, setWaiting, setManualChoice, setGameStatus, socket, yachtChoice, setYachtChoice } = useGameContext()
     const [nameInput, setNameInput] = useState('')
-    const [yachtChoice, setYachtChoice] = useState(false)
 
     const nameInputRef = useRef()
 
@@ -23,7 +22,6 @@ const UserRegistration = () => {
         setUserName(nameInput)
         setNameInput('')
         setYachtChoice(true)
-
     }
 
     const handleManualChoice = () => {
@@ -37,14 +35,15 @@ const UserRegistration = () => {
             setYachts(result.yachts)
             setWaiting(result.waiting)
         })
-
+        setYachtChoice(false)
+        setGameStatus(true)
         navigate('/game')
     }
 
     return (
         <div>
 
-            {!userName && <div className="game-container form-container">
+            {<div className="game-container form-container">
                 <h1>{!userName && "Please sign your name:"}</h1>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="form-username">

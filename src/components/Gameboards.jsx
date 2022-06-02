@@ -2,10 +2,11 @@ import { useGameContext } from '../contexts/UserContext'
 import { useEffect } from 'react'
 import Chat from './Chat'
 import Results from './Results'
-import GameRestart from './GameRestart'
+// import GameRestart from './GameRestart'
+import ChooseYacht from './ChooseYacht'
 
 const Gameboards = () => {
-	const { userName, opponentName, yachts, shootTarget, move, setMove, setShootTarget, set_results_Message, setGameRestart, setYachts, socket } = useGameContext()
+	const { userName, opponentName, yachts, shootTarget, move, setMove, setShootTarget, set_results_Message, setGameRestart, setYachts, gameEnd, setGameEnd, gameEndMsg, setGameEndMsg, socket } = useGameContext()
 
 	const update = (e) => {
 		e.preventDefault()
@@ -73,12 +74,18 @@ const Gameboards = () => {
 					document.getElementById('enemyfield_' + point.row + point.col).classList.add('board_killed', 'blocked')
 				}
 				set_results_Message('You won!!! Congratulations!!!')
+				setGameEnd(true)
+				setGameEndMsg('You won! Congratulations! Press the button to restart the game.')
+				// setIllustration(really_happy_seagull)
 			} else {
 
 				for (let point of killed_yacht.points) {
 					document.getElementById('myfield_' + point.row + point.col).classList.add('board_my_yacht_killed')
 				}
 				set_results_Message('Looooooseeeeeer!!!')
+				setGameEndMsg('You lost! Press the button to restart the game and try one more time.')
+				setGameEnd(true)
+				// setIllustration(really_sad_seagull)
 			}
 		}
 		socket.on('shot:winner', handleWinner)
@@ -101,12 +108,27 @@ const Gameboards = () => {
 	}, [yachts])
 
 	useEffect(() => {
+	// Listener for when the server tells us an opponent has left to find a new opponent
+	socket.on('leaving:room', () => {
+		// Getting all player cells so they are iterable
+		let playerCells = document.getElementsByClassName('player-cell')
+
+		// Looping over player cells and removing classes for when a yacht is present, hit, missed and killed
+		for (let cell of playerCells) {
+			cell.classList.remove('board_yacht', 'board_my_yacht_hit', 'board_my_yacht_killed', 'board_my_yacht_miss')
+		}
+	})
+	
 	// Listener for when the server tells us it's time to recalibrate the users yachts (voted for rematching the other user)
-	socket.on('recalibrating:yachts', (newYachts) => {
+	socket.on('recalibrating:yachts', (newYachts, userMove) => {
+		console.log(newYachts)
 		yachts.splice(0,4)
-		console.log(yachts)
 		setYachts(newYachts)
-		console.log(yachts)
+		if (userMove === false) {
+			set_results_Message('Wait for your turn. Your enemy is shooting first.')
+		} else {
+			set_results_Message("You shoot first! Try to hit one of the enemy's yachts!")
+		}
 
 		// Getting all player cells so they are iterable
 		let playerCells = document.getElementsByClassName('player-cell')
@@ -121,23 +143,14 @@ const Gameboards = () => {
 		for (let cell of opponentCells) {
 			cell.classList.remove('board_yacht', 'board_hit', 'board_killed', 'board_miss', 'blocked')
 		}
-
-		// Works for removing all yachts from yachts array state
-		
-		// yachts.splice(0,4)
-
-		// console.log('new', yachts)
-		// setYachts(newYachts)
-
 	})
 
 	// Listener for when both players have agreed to rematch eachother
-    socket.on('rematch:agreed', (newYachts) => {
-
-		console.log('hi')
-        setGameRestart(false)
-            
-    })
+    // socket.on('rematch:agreed', () => {
+	// 	console.log('hiii')
+    //     setGameEnd(false)
+	// 	setFlicker(false)
+    // })
 	}, [socket])
 
 	return (
@@ -171,6 +184,7 @@ const Gameboards = () => {
 				</div>
 			</div>
 
+			{/* <ChooseYacht></ChooseYacht> */}
 			<Chat />
 
 		</>

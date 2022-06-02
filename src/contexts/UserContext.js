@@ -19,6 +19,13 @@ const GameContextProvider = ({ children }) => {
     const [results_message, set_results_Message] = useState()
     const [manualChoice, setManualChoice] = useState(false)
     const [gameRestart, setGameRestart] = useState(false)
+	const [gameEnd, setGameEnd] = useState(false)
+	const [gameEndMsg, setGameEndMsg] = useState('')
+    const [disabled, setDisabled] = useState(false)
+    const [ yachtChoice, setYachtChoice ] = useState(false)
+
+    // gameStatus is false before the user has first put in username and chosen ships. turns to true when this is done. This is so manual choice submit buttons will conditionally render based on if the game is active or just starting
+    const [gameStatus, setGameStatus] = useState(false)
 
     const values = {
         userName,
@@ -41,6 +48,16 @@ const GameContextProvider = ({ children }) => {
         setManualChoice,
         gameRestart,
         setGameRestart,
+        gameEnd,
+        setGameEnd,
+        gameEndMsg,
+        setGameEndMsg,
+        gameStatus,
+        setGameStatus,
+        disabled,
+        setDisabled,
+        yachtChoice,
+        setYachtChoice,
         socket
     }
 

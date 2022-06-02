@@ -4,7 +4,8 @@ import { useGameContext } from '../contexts/UserContext'
 import { useNavigate } from 'react-router-dom'
 
 const ChooseYacht = () => {
-    const { manualChoice, setYachts, setWaiting, userName, socket } = useGameContext()
+    const { manualChoice, setManualChoice, setYachts, yachts, setWaiting, userName, socket, gameStatus,
+        setGameStatus, setYachtChoice, setGameEnd, setDisabled } = useGameContext()
 
     const navigate = useNavigate()
 
@@ -165,19 +166,41 @@ const ChooseYacht = () => {
                     setMessage('You can not place yacht here!')
                 }
             }
-
         }
-
     }
 
     const handleSubmit = () => {
-
         socket.emit('user:joined', userName, tempYachts, (result) => {
             setYachts(result.yachts)
             setWaiting(result.waiting)
         })
-
+        // setGameStatus(true)
         navigate('/game')
+    }
+
+    const handleSubmitWhileInGame = () => {
+        socket.emit('manual:choice', tempYachts, (result) => {
+            console.log(result)
+            setYachts(result.yachts)
+        })
+
+		// Getting all player cells so they are iterable
+		let playerCells = document.getElementsByClassName('player-cell')
+
+		// Looping over player cells and removing classes for when a yacht is present, hit, missed and killed
+		for (let cell of playerCells) {
+			cell.classList.remove('board_yacht', 'board_my_yacht_hit', 'board_my_yacht_killed', 'board_my_yacht_miss')
+		}
+
+		let opponentCells = document.getElementsByClassName('opponent-cell')
+
+		for (let cell of opponentCells) {
+			cell.classList.remove('board_yacht', 'board_hit', 'board_killed', 'board_miss', 'blocked')
+		}
+        setManualChoice(false)
+        setDisabled(true)
+        setYachtChoice(false)
+        // setGameEnd(false)
     }
 
     const allowDrop = (e) => {
@@ -285,7 +308,9 @@ const ChooseYacht = () => {
 
                 </div>
                 <div>
-                    <button className="button btn-gold" onClick={handleSubmit} disabled={yachtsLength.length > 0}>Submit the choice</button>
+                    {!gameStatus && <button className="button btn-gold nope" onClick={handleSubmit} disabled={yachtsLength.length > 0}>Submit the choice</button>}
+                    {gameStatus && <button className="button btn-gold testingtesting" onClick={handleSubmitWhileInGame} disabled={yachtsLength.length > 0}>Submit the choice</button>}
+
                 </div>
             </Modal.Body>
         </Modal>
