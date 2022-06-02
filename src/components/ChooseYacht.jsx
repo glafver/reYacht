@@ -12,7 +12,7 @@ const ChooseYacht = () => {
 
     const [yachtsLength, setYachtsLength] = useState([4, 3, 2, 2])
     const [tempYachts, setTempYachts] = useState([])
-    const [message, setMessage] = useState('Choose your yacht by clicking first on the yacht and then on a game field')
+    const [message, setMessage] = useState('Choose position for your yacht by dragging the yacht on to the game field')
 
     const getPoints = (length, row_start, col_start, vertical) => {
         let points = [{ row: row_start, col: col_start }];

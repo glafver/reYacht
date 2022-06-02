@@ -74,9 +74,7 @@ const UserRegistration = () => {
                 </Modal.Body>
             </Modal>
 
-            <ChooseYacht></ChooseYacht>
-
-			
+            <ChooseYacht></ChooseYacht>			
         </div >
     )
 }
