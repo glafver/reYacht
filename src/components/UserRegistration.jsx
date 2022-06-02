@@ -76,6 +76,7 @@ const UserRegistration = () => {
 
             <ChooseYacht></ChooseYacht>
 
+			
         </div >
     )
 }

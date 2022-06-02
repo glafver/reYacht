@@ -24,7 +24,7 @@
 
 .seagull {
 	position: absolute;
-	bottom: -5%;
+	bottom: -10%;
 	right: -10%;
 	width: auto;
 	height: 20vh;
@@ -39,4 +39,34 @@
 	font-size: 1rem;
 	font-weight: 400;
 	z-index: 100;
+}
+
+@media screen and (min-width: 600px) {
+
+	.seagull {
+		bottom: -15%;
+		right: -10%;
+		height: 22vh;
+	}
+
+}
+
+@media screen and (min-width: 850px) {
+
+	.seagull {
+		bottom: -15%;
+		right: -5%;
+		height: 30vh;
+	}
+
+}
+
+@media screen and (min-width: 1140px) {
+
+	.seagull {
+		bottom: -10%;
+		right: 5%;
+		height: 30vh;
+	}
+
 }
