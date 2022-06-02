@@ -3,10 +3,11 @@ import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGameContext } from '../contexts/UserContext'
 import ChooseYacht from './ChooseYacht'
+import standard_seagull from '../assets/images/seagull5.svg'
 
 const UserRegistration = () => {
 
-    const { userName, setUserName, setYachts, setWaiting, setManualChoice, socket } = useGameContext()
+    const { userName, setUserName, setYachts, setWaiting, setManualChoice, setResultsMessage, setIllustration, socket } = useGameContext()
     const [nameInput, setNameInput] = useState('')
     const [yachtChoice, setYachtChoice] = useState(false)
 
@@ -23,7 +24,8 @@ const UserRegistration = () => {
         setUserName(nameInput)
         setNameInput('')
         setYachtChoice(true)
-
+        setIllustration(standard_seagull)
+        setResultsMessage('Welcome to game!')
     }
 
     const handleManualChoice = () => {
@@ -74,7 +76,7 @@ const UserRegistration = () => {
                 </Modal.Body>
             </Modal>
 
-            <ChooseYacht></ChooseYacht>			
+            <ChooseYacht></ChooseYacht>
         </div >
     )
 }

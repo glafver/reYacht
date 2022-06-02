@@ -3,8 +3,9 @@ import { Modal } from 'react-bootstrap'
 import { useGameContext } from '../contexts/UserContext'
 import { useNavigate } from 'react-router-dom'
 
+
 const ChooseYacht = () => {
-    const { manualChoice, setYachts, setWaiting, userName, socket } = useGameContext()
+    const { manualChoice, setManualChoice, setYachts, setWaiting, userName, socket } = useGameContext()
 
     const navigate = useNavigate()
 
@@ -176,7 +177,7 @@ const ChooseYacht = () => {
             setYachts(result.yachts)
             setWaiting(result.waiting)
         })
-
+        setManualChoice(false)
         navigate('/game')
     }
 

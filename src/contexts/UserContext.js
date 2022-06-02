@@ -7,7 +7,7 @@ const socket = socketio.connect(process.env.REACT_APP_SOCKET_URL)
 
 
 export const useGameContext = () => {
-	return useContext(UserContext)
+    return useContext(UserContext)
 }
 
 const GameContextProvider = ({ children }) => {
@@ -18,9 +18,9 @@ const GameContextProvider = ({ children }) => {
     const [waiting, setWaiting] = useState()
     const [move, setMove] = useState()
     const [shootTarget, setShootTarget] = useState()
-    const [results_message, set_results_Message] = useState('Welcome to game!')
+    const [resultsMessage, setResultsMessage] = useState('Welcome to game!')
     const [manualChoice, setManualChoice] = useState(false)
-	const [illustration, setIllustration] = useState(standard_seagull)
+    const [illustration, setIllustration] = useState(standard_seagull)
 
     const values = {
         userName,
@@ -37,13 +37,13 @@ const GameContextProvider = ({ children }) => {
         setMove,
         shootTarget,
         setShootTarget,
-        results_message,
-        set_results_Message,
+        resultsMessage,
+        setResultsMessage,
         manualChoice,
         setManualChoice,
         socket,
-		illustration,
-		setIllustration
+        illustration,
+        setIllustration
     }
 
     return (
