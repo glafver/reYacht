@@ -17,7 +17,7 @@ import standard_seagull from '../assets/images/seagull5.svg'
 
 const Gameboards = () => {
 
-	const { userName, setUserName, opponentName, setOpponentName, yachts, setYachts, shootTarget, move, setMove, setShootTarget, set_results_Message, setManualChoice, socket, setIllustration } = useGameContext()
+	const { userName, setUserName, opponentName, setOpponentName, yachts, setYachts, shootTarget, move, setMove, setShootTarget, set_results_Message, setManualChoice, socket, illustration, setIllustration } = useGameContext()
 
 	const navigate = useNavigate()
 
@@ -155,7 +155,7 @@ const Gameboards = () => {
 				<Modal.Body id="modalContentYachts">
 					<div className='d-flex justify-content-center flex-column'>
 						<h2>{gameEndMsg}</h2>
-
+						<img src={illustration} alt="seagull"/>
 						<button className="button btn-gold" onClick={handleRestartGame}>Restart the game</button>
 					</div>
 

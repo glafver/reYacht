@@ -150,6 +150,14 @@
 	background-repeat: no-repeat;
 }
 
+#modalContentYachts {
+	text-align: center;
+}
+
+#modalContentYachts img {
+	height: 40vh;
+}
+
 @media screen and (min-width: 600px) {
 	#modalManuallyChoose {
 		max-width: 90%;
