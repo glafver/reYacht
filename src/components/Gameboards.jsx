@@ -5,8 +5,19 @@ import Results from './Results'
 import { Modal } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
+/* seagulls */
+import happy_seagull from '../assets/images/seagull1.svg'
+import watching_seagull from '../assets/images/seagull2.svg'
+import really_happy_seagull from '../assets/images/seagull3.svg'
+import really_sad_seagull from '../assets/images/seagull4.svg'
+import ohoy_seagull from '../assets/images/seagull5.svg'
+import welldone_seagull from '../assets/images/seagull6.svg'
+import captain_seagull from '../assets/images/seagull7.svg'
+import standard_seagull from '../assets/images/seagull5.svg'
+
 const Gameboards = () => {
-	const { userName, setUserName, opponentName, setOpponentName, yachts, setYachts, shootTarget, move, setMove, setShootTarget, set_results_Message, setManualChoice, socket } = useGameContext()
+
+	const { userName, setUserName, opponentName, setOpponentName, yachts, setYachts, shootTarget, move, setMove, setShootTarget, set_results_Message, setManualChoice, socket, setIllustration } = useGameContext()
 
 	const navigate = useNavigate()
 
@@ -34,6 +45,7 @@ const Gameboards = () => {
 		setGameEnd(false)
 		setShootTarget()
 		setManualChoice(false)
+		setIllustration(standard_seagull)
 		set_results_Message('Welcome to game!')
 		navigate('/')
 	}
@@ -45,14 +57,17 @@ const Gameboards = () => {
 
 				document.getElementById('enemyfield_' + point.row + point.col).classList.add('board_miss', 'blocked')
 				set_results_Message("You missed! Wait for your enemy's move and then try again!")
+				setIllustration(watching_seagull)
 			} else {
 				setMove(true)
 				document.getElementById('myfield_' + point.row + point.col).classList.add('board_my_yacht_miss')
 				set_results_Message('Your opponent missed! Your turn to shoot!')
+				setIllustration(captain_seagull)
+
 			}
 		}
 		socket.on('shot:miss', handleMiss)
-	}, [socket, setMove, set_results_Message])
+	}, [socket, setMove, set_results_Message, setIllustration])
 
 	useEffect(() => {
 		const handleHit = (user_id, point, killed_yacht) => {
@@ -66,8 +81,12 @@ const Gameboards = () => {
 						document.getElementById('enemyfield_' + point.row + point.col).classList.add('board_killed', 'blocked')
 					}
 					set_results_Message("Great! You've hit a whole ship! Wait for your enemy's move and then continue to shoot!")
+					setIllustration(welldone_seagull)
+
 				} else {
-					set_results_Message('Good job! You shot one of the ships! Try more on the next turn! Wait and try again!')
+					set_results_Message('Good job! You hit one of the ships! Try more on the next turn!')
+					setIllustration(happy_seagull)
+
 				}
 			} else {
 				setMove(true)
@@ -77,14 +96,17 @@ const Gameboards = () => {
 					for (let point of killed_yacht.points) {
 						document.getElementById('myfield_' + point.row + point.col).classList.add('board_my_yacht_killed')
 					}
-					set_results_Message('Tragedy! One of your ships was killed! Your turn now!')
+					set_results_Message('Tragedy! One of your ships was killed! Your turn now - lets get revenge!')
+					setIllustration(ohoy_seagull)
+
 				} else {
 					set_results_Message('Oh no! One of your ships was shot! Your turn now!')
+					setIllustration(watching_seagull)
 				}
 			}
 		}
 		socket.on('shot:hit', handleHit)
-	}, [socket, setMove, set_results_Message])
+	}, [socket, setMove, set_results_Message, setIllustration])
 
 	useEffect(() => {
 		const handleWinner = (user_id, point, killed_yacht) => {
@@ -96,6 +118,7 @@ const Gameboards = () => {
 				set_results_Message('You won!!! Congratulations!!!')
 				setGameEnd(true)
 				setGameEndMsg('You won! Congratulations! Press the button to restart the game.')
+				setIllustration(really_happy_seagull)
 			} else {
 
 				for (let point of killed_yacht.points) {
@@ -104,10 +127,11 @@ const Gameboards = () => {
 				set_results_Message('Looooooseeeeeer!!!')
 				setGameEndMsg('You lost! Press the button to restart the game and try one more time.')
 				setGameEnd(true)
+				setIllustration(really_sad_seagull)
 			}
 		}
 		socket.on('shot:winner', handleWinner)
-	}, [socket, set_results_Message, setGameEnd])
+	}, [socket, set_results_Message, setIllustration, setGameEnd])
 
 	useEffect(() => {
 		socket.emit('game:shoot', shootTarget)
@@ -129,7 +153,7 @@ const Gameboards = () => {
 		<>
 			<Modal id="restartModal" show={gameEnd}>
 				<Modal.Body id="modalContentYachts">
-					<div className='d-flex justify-content-center'>
+					<div className='d-flex justify-content-center flex-column'>
 						<h2>{gameEndMsg}</h2>
 
 						<button className="button btn-gold" onClick={handleRestartGame}>Restart the game</button>
@@ -141,7 +165,8 @@ const Gameboards = () => {
 			<Results />
 			<div className="all-boards">
 				<div className="board-container text-center">
-					<h2>You: {userName}</h2>
+					<h2 className="username-title">Your board</h2>
+					<p className="username-board">{userName}</p>
 					<div className="board player-grid m-auto" >
 
 						{yachts &&
@@ -153,7 +178,8 @@ const Gameboards = () => {
 					</div>
 				</div>
 				<div className="board-container text-center">
-					<h2>Enemy: {opponentName}</h2>
+					<h2 className="username-title">Enemy's board</h2>
+					<p className="username-board">{opponentName}</p>
 
 					<div className="board enemy-grid m-auto" style={{ cursor: move === true ? "pointer" : "not-allowed" }} >
 

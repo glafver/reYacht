@@ -1,8 +1,27 @@
 @import 'colors';
+@import 'fonts';
+
 
 /**
 * Boards
 */
+.board-container {
+	background-color: $oceanblue;
+	padding: 2%;
+	border-radius: 0.5em;
+}
+
+.username-title {
+	font-size: 0.5rem;
+	font-family: $standardFont;
+	color: $lightOceanBlue;
+}
+
+.username-board {
+	margin-bottom: 1rem;
+	color: $gold;
+	font-size: 1.5rem;
+}
 
 .boards {
 	display: flex;
@@ -53,9 +72,12 @@
 }
 
 .board_miss {
-	background-image: url(../images/miss.png);
+	background-image: url(../images/miss4.png);
+	background-color: $oceanblue;
 	background-size: cover;
 	cursor: not-allowed;
+	animation: rotation 4s infinite linear;
+	border-radius: 50%;
 }
 
 .board_killed {
@@ -68,8 +90,20 @@
 }
 
 .board_my_yacht_miss {
-	background-image: url(../images/miss.png);
+	background-image: url(../images/miss4.png);
+	background-color: $oceanblue;
 	background-size: cover;
+	animation: rotation 4s infinite linear;
+	border-radius: 50%;
+}
+
+@keyframes rotation {
+	from {
+	  transform: rotate(0deg);
+	}
+	to {
+	  transform: rotate(359deg);
+	}
 }
 
 .board_my_yacht_killed {

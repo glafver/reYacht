@@ -23,7 +23,7 @@ const Navbar = () => {
                 </div>
 
                 {/* lägg i en egen component? */}
-                <Modal id="modalDialog" show={show} onHide={handleClose}>
+                <Modal id="modalDialogInstructions" show={show} onHide={handleClose}>
                     <Modal.Header id="modalHeader" closeButton>
                         <Modal.Title id="modalTitle">How to play</Modal.Title>
                     </Modal.Header>
