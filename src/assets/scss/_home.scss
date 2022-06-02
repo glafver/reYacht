@@ -1,13 +1,28 @@
+@import 'fonts';
+
+/**
+* Home
+*/
+
 form {
-	width: 60%;
+	width: 100%;
 }
 
 .form-container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+
 	height: 80vh;
-	padding: 4rem;
+	padding: 4rem 0;
+	margin-top: 2rem;
+}
+
+.form-username {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 #input-username {
@@ -17,17 +32,48 @@ form {
 	border-radius: 0px;
 
 	font-style: italic;
-	font-family: 'Pinyon Script', cursive;
+	font-family: $cursiveFont;
 	font-size: 1.5rem;
 	text-align: center;
-
-	margin-bottom: 2rem;
+	margin-top: 2rem;
 }
 
 #input-username::placeholder {
-	color: $gold;
+	color: #ae9b8946;
 }
 
 #input-username:focus {
 	box-shadow: none;
+}
+
+#start-button {
+	width: 100%;
+	margin-top: 4rem;
+}
+
+@media screen and (min-width: 834px) {
+	form {
+		width: 80%;
+	}
+
+	#start-button {
+		width: 30%;
+		
+	}
+}
+
+@media screen and (min-width: 600px) {
+	.form-container {
+		margin-top: 4rem;
+	}
+}
+
+@media screen and (min-width: 1440px) {
+	form {
+		width: 60%;
+	}
+
+	.form-container {
+		margin-top: 6rem;
+	}
 }

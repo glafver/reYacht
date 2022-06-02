@@ -5,7 +5,7 @@ import { Modal } from 'react-bootstrap'
 
 const CountdownTimer = () => {
 
-    const [counter, setCounter] = useState(1)
+    const [counter, setCounter] = useState(3)
     const { countdown, setCountdown } = useGameContext()
 
     useEffect(() => {
@@ -15,10 +15,10 @@ const CountdownTimer = () => {
 
 
     return (
-        <Modal show={countdown} className='d-flex align-items-center text-center' id="countdown">
+        <Modal show={countdown} id="countdown">
             <Modal.Body >
                 <p className='display-3'>Game will start in</p>
-                <p>{counter}</p>
+                <p id="countdownNumber">{counter}</p>
             </Modal.Body>
         </Modal>
     )

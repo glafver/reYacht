@@ -9,8 +9,9 @@ const ChooseYacht = () => {
     const navigate = useNavigate()
 
     const [tempYacht, setTempYacht] = useState(false)
+
     const [yachtsLength, setYachtsLength] = useState([4, 3, 2, 2])
-    const [tempYachts] = useState([])
+    const [tempYachts, setTempYachts] = useState([])
     const [message, setMessage] = useState('Choose your yacht by clicking first on the yacht and then on a game field')
 
     const getPoints = (length, row_start, col_start, vertical) => {
@@ -92,11 +93,6 @@ const ChooseYacht = () => {
 
         setTempYacht({ length: Number(result[1]), vertical: result[0] })
 
-        for (let cell of document.getElementsByClassName('board_cell')) {
-            if (!cell.classList.contains('blocked')) {
-                cell.style.cursor = 'pointer'
-            }
-        }
         for (let cell of document.getElementsByClassName('active')) {
             cell.classList.add('inactive')
             if (cell.classList.contains(e.target.id)) {
@@ -107,7 +103,9 @@ const ChooseYacht = () => {
 
     const setYacht = (e) => {
         e.preventDefault()
+
         e.target.classList.remove('hover_cell')
+
         let cells = document.getElementsByClassName('inactive')
 
         while (cells.length) {
@@ -122,6 +120,7 @@ const ChooseYacht = () => {
                 setTempYacht(false)
                 yacht.row = Number(e.target.id[0])
                 yacht.col = Number(e.target.id[1])
+                yacht.id = e.target.id
 
                 yacht.points = getPoints(yacht.length, yacht.row, yacht.col, yacht.vertical)
 
@@ -146,16 +145,18 @@ const ChooseYacht = () => {
 
                 if (canDraw) {
 
-                    for (let point of yacht.points) {
-                        document.getElementById(`${point.row}${point.col}`).classList.add('yacht-blocked', 'blocked')
-                    }
                     yacht.blocked_points = getBlockedPointes(yacht.points, yacht.vertical)
 
                     for (let point of yacht.blocked_points) {
-                        document.getElementById(`${point.row}${point.col}`).classList.add('yacht-neighbour-blocked', 'blocked')
+                        document.getElementById(`${point.row}${point.col}`).classList.add('yacht-neighbour-blocked', 'blocked', `removable_${yacht.vertical}_${yacht.length}`)
                     }
 
-                    tempYachts.push({ length: yacht.length, row_start: yacht.row, col_start: yacht.col, vertical: yacht.vertical, points: yacht.points })
+                    for (let point of yacht.points) {
+                        document.getElementById(`${point.row}${point.col}`).classList.add('yacht-blocked', 'blocked', `removable_${yacht.vertical}_${yacht.length}`)
+                        document.getElementById(`${point.row}${point.col}`).classList.remove('yacht-neighbour-blocked')
+                    }
+
+                    tempYachts.push({ length: yacht.length, row_start: yacht.row, col_start: yacht.col, vertical: yacht.vertical, points: yacht.points, blocked_points: yacht.blocked_points, id: yacht.id })
 
                     yachtsLength.splice(yachtsLength.indexOf(yacht.length), 1)
                     setYachtsLength(yachtsLength)
@@ -165,9 +166,6 @@ const ChooseYacht = () => {
                 }
             }
 
-            for (let cell of document.getElementsByClassName('board_cell')) {
-                cell.style.cursor = 'not-allowed'
-            }
         }
 
     }
@@ -191,54 +189,103 @@ const ChooseYacht = () => {
     const onDragEnter = (e) => {
         if (!e.target.classList.contains('blocked')) {
             e.target.classList.add('hover_cell')
-            e.preventDefault()
         }
     }
 
     const onDragLeave = (e) => {
         if (!e.target.classList.contains('blocked')) {
             e.target.classList.remove('hover_cell')
-            e.preventDefault()
+        }
+    }
+
+    const removeYacht = (e) => {
+
+        if (e.target.classList.contains('yacht-blocked')) {
+
+            let found_yacht
+
+            for (let yacht of tempYachts) {
+                for (let point of yacht.points) {
+                    if (point.row === Number(e.target.id[0]) && point.col === Number(e.target.id[1])) {
+                        found_yacht = yacht
+                        break
+                    }
+                }
+            }
+
+            found_yacht.points.forEach(point => {
+                document.getElementById(`${point.row}${point.col}`).classList.remove('blocked', 'yacht-blocked')
+            })
+
+            found_yacht.blocked_points.forEach(point => {
+                document.getElementById(`${point.row}${point.col}`).classList.remove('blocked', 'yacht-neighbour-blocked')
+            })
+
+            let new_yachts = tempYachts.filter((yacht) => {
+                return yacht.id !== found_yacht.id
+            })
+
+            yachtsLength.push(found_yacht.length)
+
+            for (let yacht of new_yachts) {
+                for (let point of yacht.blocked_points) {
+                    document.getElementById(`${point.row}${point.col}`).classList.add('blocked', 'yacht-neighbour-blocked')
+                }
+                for (let point of yacht.points) {
+                    document.getElementById(`${point.row}${point.col}`).classList.remove('yacht-neighbour-blocked')
+                }
+            }
+
+            setTempYachts(new_yachts)
+        }
+    }
+
+    const resetYachts = () => {
+        setTempYacht(null)
+        let cells = document.getElementsByClassName('inactive')
+
+        while (cells.length) {
+            cells[0].classList.remove('inactive')
         }
     }
 
     return (
-        <Modal className='d-flex align-items-center text-center ' show={manualChoice}>
-            <Modal.Body >
-                <p>{message}</p>
+        <Modal id="modalManuallyChoose" show={manualChoice}>
+            <Modal.Body id="manuallyChoose">
+                <div id="chooseYachts">
+                    <p id="chooseYachtMsg">{message}</p>
 
-                <div className="yachts-container mx-auto mb-3">
-                    <div id="vertical_4" style={{ gridArea: "2 / 2 / span 4 / span 1", cursor: "pointer" }} draggable onDragStart={getYacht} className={yachtsLength.includes(4) ? 'vertical_4 active' : 'd-none'}>
+                    <div className="yachts-container mx-auto mb-3" onClick={resetYachts}>
+                        <div id="vertical_4" style={{ gridArea: "2 / 2 / span 4 / span 1", cursor: "pointer" }} draggable onDragStart={getYacht} className={yachtsLength.includes(4) ? 'vertical_4 active' : 'd-none'}>
+                        </div>
+
+                        <div id="vertical_3" style={{ gridArea: "2 / 4 / span 3 / span 1", cursor: "pointer" }} draggable onDragStart={getYacht} className={yachtsLength.includes(3) ? 'vertical_3 active' : 'd-none'}>
+                        </div>
+
+                        <div id="vertical_2" style={{ gridArea: "2 / 6 / span 2 / span 1", cursor: "pointer" }} draggable onDragStart={getYacht} className={yachtsLength.includes(2) ? 'vertical_2 active' : 'd-none'}>
+                        </div>
+
+                        <div id="horizontal_4" style={{ gridArea: "2 / 8 / span 1 / span 4", cursor: "pointer" }} draggable onDragStart={getYacht} className={yachtsLength.includes(4) ? 'horizontal_4 active' : 'd-none'}>
+                        </div>
+
+                        <div id="horizontal_3" style={{ gridArea: "4 / 8 / span 1 / span 3", cursor: "pointer" }} draggable onDragStart={getYacht} className={yachtsLength.includes(3) ? 'horizontal_3 active' : 'd-none'}>
+                        </div>
+
+                        <div id="horizontal_2" style={{ gridArea: "6 / 8 / span 1 / span 2", cursor: "pointer" }} draggable onDragStart={getYacht} className={yachtsLength.includes(2) ? 'horizontal_2 active' : 'd-none'}>
+                        </div>
                     </div>
-
-                    <div id="vertical_3" style={{ gridArea: "2 / 4 / span 3 / span 1", cursor: "pointer" }} draggable onDragStart={getYacht} className={yachtsLength.includes(3) ? 'vertical_3 active' : 'd-none'}>
-                    </div>
-
-                    <div id="vertical_2" style={{ gridArea: "2 / 6 / span 2 / span 1", cursor: "pointer" }} draggable onDragStart={getYacht} className={yachtsLength.includes(2) ? 'vertical_2 active' : 'd-none'}>
-                    </div>
-
-                    <div id="horizontal_4" style={{ gridArea: "2 / 10 / span 1 / span 4", cursor: "pointer" }} draggable onDragStart={getYacht} className={yachtsLength.includes(4) ? 'horizontal_4 active' : 'd-none'}>
-                    </div>
-
-                    <div id="horizontal_3" style={{ gridArea: "4 / 10 / span 1 / span 3", cursor: "pointer" }} draggable onDragStart={getYacht} className={yachtsLength.includes(3) ? 'horizontal_3 active' : 'd-none'}>
-                    </div>
-
-                    <div id="horizontal_2" style={{ gridArea: "6 / 10 / span 1 / span 2", cursor: "pointer" }} draggable onDragStart={getYacht} className={yachtsLength.includes(2) ? 'horizontal_2 active' : 'd-none'}>
-                    </div>
-
                 </div>
-
-                <div className="board m-auto mx-auto mb-3" >
+                <div className="board m-auto mx-auto mb-3" id="boardPlaceYachts">
 
                     {
                         [...Array(100).keys()].map((div) =>
-                            <div key={div} className="board_cell" id={div < 10 ? '0' + div : div} style={{ cursor: 'not-allowed' }} onDragEnter={onDragEnter} onDragLeave={onDragLeave} onDragOver={allowDrop} onDrop={setYacht} ></div>
+                            <div key={div} className="board_cell cursor-not-allowed" id={div < 10 ? '0' + div : div} onClick={removeYacht} onDragEnter={onDragEnter} onDragLeave={onDragLeave} onDragOver={allowDrop} onDrop={setYacht} ></div>
                         )
                     }
 
                 </div>
                 <div>
-                    <button className='button btn-gold' onClick={handleSubmit} disabled={yachtsLength.length > 0}>Submit the choice</button>
+                    <button className="button btn-gold" onClick={handleSubmit} disabled={yachtsLength.length > 0}>Submit the choice</button>
                 </div>
             </Modal.Body>
         </Modal>

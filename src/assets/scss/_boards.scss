@@ -1,31 +1,46 @@
 @import 'colors';
 
+/**
+* Boards
+*/
+
 .boards {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
+.all-boards {
+	display: grid;
+	grid-template-rows: repeat(2, 1fr);
+	grid-template-columns: repeat(1, 1fr);
+	gap: 4rem;
+}
+
 .board {
-	background-color: rgb(51, 51, 51);
+	background-color: $oceanblue;
 
 	display: grid;
-	// grid-template-columns: repeat(auto-fill, minmax(25px, 1fr));
-	// grid-template-rows: repeat(auto-fill, minmax(25px, 1fr));
 	grid-template-rows: repeat(10, 1fr);
 	grid-template-columns: repeat(10, 1fr);
-	height: 300px;
-	width: 300px;
 	gap: 1px;
 }
+
+/* .board .board_cell:nth-child(3n) {
+	background-color: $oceanblue;
+} */
 
 .board_cell {
 	background-color: $lightOceanBlue;
 	cursor: pointer;
+
+	width: 100%;
+	aspect-ratio: 1 / 1;
 }
 
 .hover_cell {
 	opacity: 0.3;
+	border: 3px solid black;
 }
 
 .board_yacht {
@@ -38,7 +53,6 @@
 }
 
 .board_miss {
-	// background-color: $miss;
 	background-image: url(../images/miss.png);
 	background-size: cover;
 	cursor: not-allowed;
@@ -54,7 +68,6 @@
 }
 
 .board_my_yacht_miss {
-	// background-color: $light_miss;
 	background-image: url(../images/miss.png);
 	background-size: cover;
 }
@@ -62,3 +75,15 @@
 .board_my_yacht_killed {
 	background-color: $light_killed;
 }
+
+
+@media screen and (min-width: 600px) {
+	.all-boards {
+		display: grid;
+		grid-template-rows: repeat(1, 1fr);
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1rem;
+	}
+}
+
+@media screen and (min-width: 1440px) {}

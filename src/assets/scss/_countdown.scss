@@ -1,0 +1,25 @@
+@import 'fonts';
+
+/**
+* Boards
+*/
+
+#countdown {
+	display: flex;
+	align-items: center;
+	text-align: center;
+}
+
+#countdownNumber {
+	font-size: 20rem;
+}
+
+#countdown .modal-content {
+	background-color: transparent;
+	border: 0;
+}
+
+#countdown .modal-body {
+	color: white;
+	font-family: $cursiveFont;
+}

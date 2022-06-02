@@ -44,10 +44,10 @@ const UserRegistration = () => {
     return (
         <div>
 
-            {!userName && <div className="form-container">
-                <h1 className='mb-4'>{!userName && 'Please sign your name:'}</h1>
+            {!userName && <div className="game-container form-container">
+                <h1>{!userName && "Please sign your name:"}</h1>
                 <Form onSubmit={handleSubmit}>
-                    <Form.Group className="mb-3 form-username" >
+                    <Form.Group className="form-username">
                         <Form.Control
                             id="input-username"
                             onChange={e => setNameInput(e.target.value)}
@@ -56,20 +56,20 @@ const UserRegistration = () => {
                             required
                             type="text"
                             value={nameInput} />
-                        <button className="button btn-gold" type="submit">Start the game</button>
+                        <button className="button btn-gold" id="start-button" type="submit">Start the game</button>
                     </Form.Group>
                 </Form>
             </div>
             }
 
 
-            <Modal className='d-flex align-items-center text-center' show={yachtChoice}>
-                <Modal.Body >
-                    <p>Do you want to place yachts yourself or get them randomly?</p>
+            <Modal id="modalDialogYachts" show={yachtChoice}>
+                <Modal.Body id="modalContentYachts">
+                    <h2>Do you want to place yachts yourself or get them randomly?</h2>
 
-                    <div className='d-flex justify-content-between'>
-                        <button className='button btn-gold' onClick={handleManualChoice}>Choose yachts manually</button>
-                        <button className='button btn-gold' onClick={handleRandomChoice}>Get yachts randomly</button>
+                    <div className="btnPlaceYachts">
+                        <button className="button btn-gold" onClick={handleManualChoice}>I'll place them myself</button>
+                        <button className="button btn-gold" onClick={handleRandomChoice}>Place them randomly for me</button>
                     </div>
                 </Modal.Body>
             </Modal>

@@ -1,12 +1,8 @@
 @import 'colors';
 
-.logo {
-	color: $nav-font-color;
-}
-
-.logo h1 {
-	font-size: 1.7rem;
-}
+/**
+* Nav
+*/
 
 .navbar {
 	background-color: $nav-color;
@@ -14,12 +10,37 @@
 	padding: 1rem;
 }
 
-.navbar a {
+.nav-container {
 	display: flex;
+	justify-content: space-between;
 	align-items: center;
-
 }
 
-.navbar a h1 {
+.logo {
+	color: $nav-font-color;
+	display: flex;
+	align-items: center;
+}
+
+.logoText {
+	font-size: 1.7rem;
 	margin-bottom: 0;
+}
+
+.logo:hover {
+	color: $gold;
+}
+
+@media screen and (min-width: 600px) {
+	.navbar {
+		height: 10vh;
+		padding: 0.8rem;
+	}
+}
+
+@media screen and (min-width: 1440px) {
+	.navbar {
+		height: 8vh;
+		padding: 0.5rem;
+	}
 }

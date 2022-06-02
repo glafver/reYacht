@@ -7,12 +7,10 @@ const Results = () => {
 	return (
 		<div className="result-container">
 
-			{/* {!gameRestart && <p>{results_message}</p>} */}
+			<p className='m-0'>{results_message}</p>
 
-			<p>{results_message}</p>
-
-			{/* {gameRestart && <GameRestart/>} */}
-			<GameRestart/>
+			{gameRestart && <GameRestart/>}
+			{/* <GameRestart/> */}
 
 		</div>
 	)

@@ -1,4 +1,5 @@
 @import 'colors';
+@import 'fonts';
 
 /**
 * Generic styles
@@ -12,16 +13,28 @@ body,
 
 body {
 	background-color: $bg-color;
+	margin: 0;
 }
 
-.container {
-	font-family: 'Pinyon Script', cursive;
-	font-weight: 900;
-}
-
-h1, h2 {
-	font-family: 'Pinyon Script', cursive;
+h1,
+h2 {
+	font-family: $cursiveFont;
 	font-size: 0.9rem;
+}
+
+p {
+	font-size: 1.2rem;
+}
+
+img {
+	padding: 1rem 0;
+}
+
+.game-container {
+	font-family: $cursiveFont;
+	font-weight: 900;
+	width: 90%;
+	margin: auto;
 }
 
 .button {
@@ -30,9 +43,9 @@ h1, h2 {
 	padding: 0.5rem 1rem;
 	margin: 0.5rem 1rem;
 
-	font-family: 'Pinyon Script', cursive;
-	font-weight: 900;
-	font-size: 1.2rem;
+	font-family: $standardFont;
+	font-weight: 600;
+	font-size: 0.7rem;
 }
 
 .btn-gold {
@@ -42,4 +55,12 @@ h1, h2 {
 	&:hover {
 		background-color: scale-color($gold, $lightness: 10%);
 	}
+}
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.cursor-not-allowed {
+	cursor: not-allowed;
 }

@@ -1,48 +1,98 @@
-#modalDialog {
-	font-family: 'Pinyon Script', cursive;
-	font-size: 1.3rem;
-	width: 60%;
+@import 'fonts';
+/**
+* Modal
+*/
+
+.modal-content {
+	display: flex;
+	align-items: center;
 }
 
-#countdown .modal-content {
-	background-color: transparent;
-	border: 0;
+#modalManuallyChoose {
+	display: flex;
+	align-items: center;
+	text-align: center;
 }
 
-#countdown .modal-body {
-	font-size: 300px;
-	color: white;
-	font-family: 'Pinyon Script', cursive;
+#manuallyChoose {
+	width: 95%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	flex-wrap: wrap;
+	padding: 2rem 2rem 2rem 1rem;
+}
+
+#chooseYachts {
+	width: 95%;
+}
+
+#chooseYachtMsg {
+	padding: 1rem;
+	font-family: $cursiveFont;
+}
+
+#boardPlaceYachts {
+	width: 85%;
+}
+
+#modalDialog,
+#modalDialogYachts {
+	display: flex;
+	align-items: center;
+	text-align: center;
+
+	top: 20vh;
+	font-size: 1rem;
+	width: 95%;
+}
+
+.btnPlaceYachts {
+	display: flex;
+	justify-content: space-between;
+
+}
+
+#modalHeader {
+	width: 90%;
 }
 
 #modalTitle {
+	font-family: $cursiveFont;
 	text-align: center;
 	padding-left: 4%;
 	padding-top: 2%;
 }
 
-#modalContent {
+#modalContent,
+#modalContentYachts {
 	margin: 4%;
+	font-family: $standardFont;
+}
+
+#modalText {
+	font-size: 0.8rem;
 }
 
 .yachts-container {
 	border: solid 1px $gold;
 
 	display: grid;
-	// grid-template-columns: repeat(auto-fill, minmax(25px, 1fr));
-	// grid-template-rows: repeat(auto-fill, minmax(25px, 1fr));
 	grid-template-rows: repeat(7, 1fr);
-	grid-template-columns: repeat(15, 1fr);
-	height: 210px;
-	width: 450px;
+	grid-template-columns: repeat(12, 1fr);
+
+	aspect-ratio: 2 / 1;
+
 	gap: 1px;
+	margin: 1rem;
 }
 
 .yacht-blocked {
 	background-color: $killed;
 	background-image: url(../images/miss.png);
 	background-size: cover;
-	cursor: not-allowed;
+	cursor: pointer;
 }
 
 .yacht-neighbour-blocked {
@@ -51,41 +101,66 @@
 	cursor: not-allowed;
 }
 
-// .active {
-// 	background-color: $killed;
-// }
-
 .inactive {
-	// background-color: $light_killed;
 	opacity: 50%;
 }
 
 .vertical_4 {
-	background-image: url(../images/vertical_4.png);
-	background-size: cover;
+	background-image: url(../images/yacht4.svg);
+	background-size: auto;
+	background-repeat: no-repeat;
 }
 
 .vertical_3 {
-	background-image: url(../images/vertical_3.png);
-	background-size: cover;
+	background-image: url(../images/yacht3.svg);
+	background-size: auto;
+	background-repeat: no-repeat;
 }
 
 .vertical_2 {
-	background-image: url(../images/vertical_2.png);
-	background-size: cover;
+	background-image: url(../images/yacht2.svg);
+	background-size: auto;
+	background-repeat: no-repeat;
 }
 
 .horizontal_4 {
-	background-image: url(../images/horizontal_4.png);
-	background-size: cover;
+	background-image: url(../images/yacht4-h.svg);
+	background-size: auto;
+	background-repeat: no-repeat;
 }
 
 .horizontal_3 {
-	background-image: url(../images/horizontal_3.png);
-	background-size: cover;
+	background-image: url(../images/yacht3-h.svg);
+	background-size: auto;
+	background-repeat: no-repeat;
 }
 
 .horizontal_2 {
-	background-image: url(../images/horizontal_2.png);
-	background-size: cover;
+	background-image: url(../images/yacht2-h.svg);
+	background-size: auto;
+	background-repeat: no-repeat;
+}
+
+@media screen and (min-width: 600px) {
+	#modalManuallyChoose {
+		max-width: 90%;
+		width: 90%;
+	}
+
+	#manuallyChoose {
+		flex-direction: row;
+	}
+
+	#chooseYachts {
+		width: 60%;
+	}
+
+	#boardPlaceYachts {
+		width: 40%;
+	}
+
+	#modalDialog,
+	#modalDialogYachts {
+		width: 60%;
+	}
 }
