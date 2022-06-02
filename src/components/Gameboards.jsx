@@ -3,10 +3,10 @@ import { useEffect } from 'react'
 import Chat from './Chat'
 import Results from './Results'
 /* seagulls */
-import happy_seagul from '../assets/images/seagull1.svg'
-import watching_seagul from '../assets/images/seagull2.svg'
-import really_happy_seagul from '../assets/images/seagull3.svg'
-import really_sad_seagul from '../assets/images/seagull4.svg'
+import happy_seagull from '../assets/images/seagull1.svg'
+import watching_seagull from '../assets/images/seagull2.svg'
+import really_happy_seagull from '../assets/images/seagull3.svg'
+import really_sad_seagull from '../assets/images/seagull4.svg'
 
 const Gameboards = () => {
 	const { userName, opponentName, yachts, shootTarget, move, setMove, setShootTarget, set_results_Message, socket, setIllustration } = useGameContext()
@@ -27,12 +27,12 @@ const Gameboards = () => {
 
 				document.getElementById('enemyfield_' + point.row + point.col).classList.add('board_miss', 'blocked')
 				set_results_Message("You missed! Wait for your enemy's move and then try again!")
-				setIllustration(watching_seagul)
+				setIllustration(watching_seagull)
 			} else {
 				setMove(true)
 				document.getElementById('myfield_' + point.row + point.col).classList.add('board_my_yacht_miss')
 				set_results_Message('Your opponent missed! Your turn to shoot!')
-				setIllustration(happy_seagul)
+				setIllustration(happy_seagull)
 
 			}
 		}
@@ -51,11 +51,11 @@ const Gameboards = () => {
 						document.getElementById('enemyfield_' + point.row + point.col).classList.add('board_killed', 'blocked')
 					}
 					set_results_Message("Great! You've hit a whole ship! Wait for your enemy's move and then continue to shoot!")
-					setIllustration(really_happy_seagul)
+					setIllustration(really_happy_seagull)
 
 				} else {
-					set_results_Message('Good job! You shot one of the ships! Try more on the next turn! Wait and try again!')
-					setIllustration(happy_seagul)
+					set_results_Message('Good job! You hit one of the ships! Try more on the next turn!')
+					setIllustration(happy_seagull)
 
 				}
 			} else {
@@ -66,12 +66,12 @@ const Gameboards = () => {
 					for (let point of killed_yacht.points) {
 						document.getElementById('myfield_' + point.row + point.col).classList.add('board_my_yacht_killed')
 					}
-					set_results_Message('Tragedy! One of your ships was killed! Your turn now!')
-					setIllustration(really_sad_seagul)
+					set_results_Message('Tragedy! One of your ships was killed! Your turn now - lets get revenge!')
+					setIllustration(really_sad_seagull)
 
 				} else {
 					set_results_Message('Oh no! One of your ships was shot! Your turn now!')
-					setIllustration(watching_seagul)
+					setIllustration(watching_seagull)
 				}
 			}
 		}

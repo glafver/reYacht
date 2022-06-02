@@ -1,11 +1,13 @@
 import { createContext, useContext, useState } from 'react'
 import socketio from "socket.io-client";
+import standard_seagull from '../assets/images/seagull5.svg'
 
 const UserContext = createContext()
 const socket = socketio.connect(process.env.REACT_APP_SOCKET_URL)
 
+
 export const useGameContext = () => {
-    return useContext(UserContext)
+	return useContext(UserContext)
 }
 
 const GameContextProvider = ({ children }) => {
@@ -18,7 +20,7 @@ const GameContextProvider = ({ children }) => {
     const [shootTarget, setShootTarget] = useState()
     const [results_message, set_results_Message] = useState()
     const [manualChoice, setManualChoice] = useState(false)
-	const [illustration, setIllustration] = useState('')
+	const [illustration, setIllustration] = useState(standard_seagull)
 
     const values = {
         userName,
