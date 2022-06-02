@@ -33,13 +33,14 @@
 .board_cell {
 	background-color: $lightOceanBlue;
 	cursor: pointer;
-	
+
 	width: 100%;
 	aspect-ratio: 1 / 1;
 }
 
 .hover_cell {
 	opacity: 0.3;
+	border: 3px solid black;
 }
 
 .board_yacht {
@@ -98,6 +99,4 @@
 	}
 }
 
-@media screen and (min-width: 1440px) {
-	
-}
+@media screen and (min-width: 1440px) {}
