@@ -4,6 +4,7 @@ import { Modal } from 'react-bootstrap'
 import CountdownTimer from './Countdown'
 import { useGameContext } from '../contexts/UserContext'
 import { useNavigate } from 'react-router-dom'
+import confused_seagull from '../assets/images/seagull10.svg'
 
 const Game = () => {
 
@@ -64,6 +65,7 @@ const Game = () => {
 				<Modal.Body id="modalContentYachts">
 					<div className='d-flex justify-content-center flex-column'>
 						<h2>Your enemy disconnected. Restart the game.</h2>
+						<img src={confused_seagull} alt="seagull" />
 						<button className="button btn-gold" onClick={handleRestartGame}>Restart the game</button>
 					</div>
 
