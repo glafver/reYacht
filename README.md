@@ -1,4 +1,4 @@
-Group project - "reYacht" (a battleship game in real time for two players) - React, Socket.io
+Group project - "reYacht" (a battleship game in real time for two players) - React, Socket.io, Node.js
 
 Live game: https://re-yacht.netlify.app/
 
